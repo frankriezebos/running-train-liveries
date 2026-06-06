@@ -2,7 +2,7 @@
 
 A simple web application where users can upload and filter custom train liveries for the Running Train game.
 
-[Go to the webpage](https://frankriezebos.github.io/running-train-liveries/public/index.html)
+[Go to the webpage](https://running-train-liveries.vercel.app/)
 
 ## Features
 
