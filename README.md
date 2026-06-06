@@ -18,7 +18,9 @@ A simple web application where users can upload and filter custom train liveries
 1. Select the train type from the dropdown (1100, 1500, KC5000, or DC85)
 2. Enter a color or description (e.g., "Red and White", "Blue Classic")
 3. Choose a .jpg file to upload
-4. Click "Upload Livery"
+4. Optionally upload your thumb .jpg file
+5. Optionally enter your name
+6. Click "Upload Livery"
 
 ### Filtering Liveries
 
@@ -49,7 +51,6 @@ running-train-liveries/
 
 ## Notes
 
-- This is designed for local/private use
 - Files are stored on the local server
 - Metadata is saved in `liveries.json`
 - Uploads are stored in the `uploads/` directory
