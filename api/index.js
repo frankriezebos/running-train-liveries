@@ -46,7 +46,9 @@ const upload = multer({
 });
 
 // Metadata file
-const metadataFile = path.join(__dirname, "../liveries.json");
+const metadataFile = process.env.VERCEL
+  ? "/tmp/liveries.json"
+  : path.join(__dirname, "../liveries.json");
 
 // Load or initialize liveries data
 function loadLiveries() {
