@@ -5,19 +5,19 @@ const path = require("path");
 const fs = require("fs");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
-app.use("/uploads", express.static("uploads"));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // Create uploads directory if it doesn't exist
-const uploadsDir = path.join(__dirname, "uploads");
+const uploadsDir = path.join(__dirname, "../uploads");
 if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir);
+  fs.mkdirSync(uploadsDir, { recursive: true });
 }
+
+app.use("/uploads", express.static("uploads"));
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -46,7 +46,7 @@ const upload = multer({
 });
 
 // Metadata file
-const metadataFile = path.join(__dirname, "liveries.json");
+const metadataFile = path.join(__dirname, "../liveries.json");
 
 // Load or initialize liveries data
 function loadLiveries() {
@@ -125,3 +125,30 @@ app.get("/api/liveries", (req, res) => {
 
   res.json(liveries);
 });
+
+// Delete livery
+app.delete("/api/liveries/:id", (req, res) => {
+  const liveries = loadLiveries();
+  const livery = liveries.find((l) => l.id == req.params.id);
+
+  if (!livery) {
+    return res.status(404).json({ error: "Livery not found" });
+  }
+
+  const filePath = path.join(uploadsDir, livery.filename);
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
+
+  const updated = liveries.filter((l) => l.id != req.params.id);
+  saveLiveries(updated);
+
+  res.json({ success: true });
+});
+
+// Serve static files (catch-all for SPA)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
+});
+
+module.exports = app;
