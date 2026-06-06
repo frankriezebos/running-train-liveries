@@ -8,7 +8,6 @@ A simple web application where users can upload and filter custom train liveries
 
 - 📤 **Upload** .jpg liveries with train type and color information
 - 🔍 **Filter** by train type (1100, 1500, KC5000, DC85) and color
-- 🎨 **Beautiful UI** with responsive design
 - 💾 **Local storage** with JSON metadata
 
 ## Usage
