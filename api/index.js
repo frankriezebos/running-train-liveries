@@ -154,4 +154,21 @@ app.get("/uploads/:filename", (req, res) => {
   }
 });
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  if (err.code === "LIMIT_FILE_SIZE") {
+    return res.status(413).json({ error: "File too large" });
+  }
+  if (err.message && err.message.includes("Only .jpg files")) {
+    return res.status(400).json({ error: err.message });
+  }
+  res.status(500).json({ error: err.message || "Server error" });
+});
+
 module.exports = app;
