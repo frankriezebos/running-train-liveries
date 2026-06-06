@@ -162,9 +162,7 @@
     </div>
 
     <script>
-      if (window && window.location.href) {
-        var API_URL = window.location.href;
-      }
+      const API_URL = window.location.origin;
 
       // Live reload - check for server restarts and refresh page
       let lastServerCheck = Date.now();
