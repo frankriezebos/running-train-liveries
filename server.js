@@ -125,3 +125,27 @@ app.get("/api/liveries", (req, res) => {
 
   res.json(liveries);
 });
+
+// Delete livery
+app.delete("/api/liveries/:id", (req, res) => {
+  const liveries = loadLiveries();
+  const livery = liveries.find((l) => l.id == req.params.id);
+
+  if (!livery) {
+    return res.status(404).json({ error: "Livery not found" });
+  }
+
+  const filePath = path.join(uploadsDir, livery.filename);
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+  }
+
+  const updated = liveries.filter((l) => l.id != req.params.id);
+  saveLiveries(updated);
+
+  res.json({ success: true });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
