@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api(.*)",
       "dest": "api/index.js"
     },
     {
@@ -16,12 +16,12 @@
       "dest": "/uploads/$1"
     },
     {
-      "src": "/(.+)",
-      "dest": "public/$1"
+      "src": "/(.*\\.(js|css|jpg|jpeg|png|gif|svg|ico|woff|woff2))",
+      "dest": "/public/$1"
     },
     {
-      "src": "/",
-      "dest": "public/index.html"
+      "src": ".*",
+      "dest": "/public/index.html"
     }
   ]
 }
