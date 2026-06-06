@@ -62,44 +62,51 @@ function saveLiveries(liveries) {
 }
 
 // Upload livery
-app.post("/api/upload", upload.fields([{ name: "file", maxCount: 1 }, { name: "thumbnail", maxCount: 1 }]), (req, res) => {
-  if (!req.files || !req.files.file) {
-    return res.status(400).json({ error: "No file uploaded" });
-  }
+app.post(
+  "/api/upload",
+  upload.fields([
+    { name: "file", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  (req, res) => {
+    if (!req.files || !req.files.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
 
-  const { trainType, color, name } = req.body;
+    const { trainType, color, name } = req.body;
 
-  if (!trainType || !color) {
-    if (req.files.file) fs.unlinkSync(req.files.file[0].path);
-    if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
-    return res
-      .status(400)
-      .json({ error: "Train type and color are required" });
-  }
+    if (!trainType || !color) {
+      if (req.files.file) fs.unlinkSync(req.files.file[0].path);
+      if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
+      return res
+        .status(400)
+        .json({ error: "Train type and color are required" });
+    }
 
-  const validTrainTypes = ["1100", "1500", "KC5000", "DC85"];
-  if (!validTrainTypes.includes(trainType)) {
-    if (req.files.file) fs.unlinkSync(req.files.file[0].path);
-    if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
-    return res.status(400).json({ error: "Invalid train type" });
-  }
+    const validTrainTypes = ["1100", "1500", "KC5000", "DC85"];
+    if (!validTrainTypes.includes(trainType)) {
+      if (req.files.file) fs.unlinkSync(req.files.file[0].path);
+      if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
+      return res.status(400).json({ error: "Invalid train type" });
+    }
 
-  const livery = {
-    id: Date.now(),
-    filename: req.files.file[0].filename,
-    thumbnail: req.files.thumbnail ? req.files.thumbnail[0].filename : null,
-    name,
-    trainType,
-    color,
-    uploadedAt: new Date().toISOString(),
-  };
+    const livery = {
+      id: Date.now(),
+      filename: req.files.file[0].filename,
+      thumbnail: req.files.thumbnail ? req.files.thumbnail[0].filename : null,
+      name,
+      trainType,
+      color,
+      uploadedAt: new Date().toISOString(),
+    };
 
-  const liveries = loadLiveries();
-  liveries.push(livery);
-  saveLiveries(liveries);
+    const liveries = loadLiveries();
+    liveries.push(livery);
+    saveLiveries(liveries);
 
-  res.json({ success: true, livery });
-});
+    res.json({ success: true, livery });
+  },
+);
 
 // Get filtered liveries
 app.get("/api/liveries", (req, res) => {
@@ -117,28 +124,4 @@ app.get("/api/liveries", (req, res) => {
   }
 
   res.json(liveries);
-});
-
-// Delete livery
-app.delete("/api/liveries/:id", (req, res) => {
-  const liveries = loadLiveries();
-  const livery = liveries.find((l) => l.id == req.params.id);
-
-  if (!livery) {
-    return res.status(404).json({ error: "Livery not found" });
-  }
-
-  const filePath = path.join(uploadsDir, livery.filename);
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-  }
-
-  const updated = liveries.filter((l) => l.id != req.params.id);
-  saveLiveries(updated);
-
-  res.json({ success: true });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
 });
