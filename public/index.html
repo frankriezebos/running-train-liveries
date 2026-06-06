@@ -274,8 +274,8 @@
                 <p><strong>Uploaded:</strong> ${new Date(livery.uploadedAt).toLocaleDateString()}</p>
               </div>
               <div class="download-btns">
-                <a class="btn download-btn" href="${livery.fileUrl}" download>Download livery</a>
-                ${livery.thumbnailUrl ? `<a class="btn download-btn" href="${livery.thumbnailUrl}" download>Download thumb</a>` : ""}
+                <a class="btn download-btn" href="${livery.fileUrl}" target="_blank" download>Download livery</a>
+                ${livery.thumbnailUrl ? `<a class="btn download-btn" href="${livery.thumbnailUrl}" target="_blank" download>Download thumb</a>` : ""}
               </div>
             </div>
           </div>
