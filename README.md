@@ -2,45 +2,14 @@
 
 A simple web application where users can upload and filter custom train liveries for the Running Train game.
 
+[Go to the webpage](https://frankriezebos.github.io/running-train-liveries/public/index.html)
+
 ## Features
 
 - 📤 **Upload** .jpg liveries with train type and color information
 - 🔍 **Filter** by train type (1100, 1500, KC5000, DC85) and color
 - 🎨 **Beautiful UI** with responsive design
 - 💾 **Local storage** with JSON metadata
-
-## Setup & Installation
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm
-
-### Installation
-
-1. Clone or navigate to the project directory:
-
-```bash
-cd running-train-liveries
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Start the server:
-
-```bash
-npm start
-```
-
-4. Open your browser and go to:
-
-```
-http://localhost:3000
-```
 
 ## Usage
 
