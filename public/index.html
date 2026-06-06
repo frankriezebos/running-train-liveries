@@ -22,12 +22,12 @@
   </head>
   <body>
     <div class="container">
-      <header>
+      <header class="header">
         <h1>Liveries for Running Train</h1>
-        <p>Share and discover custom train liveries</p>
+        <p>Download and share custom train liveries</p>
       </header>
 
-      <div class="section">
+      <div class="section upload-section">
         <h2>Upload Your Livery</h2>
         <div class="notice">
           <p>
@@ -89,7 +89,7 @@
         </form>
       </div>
 
-      <div class="section">
+      <div class="section instructions-section">
         <h2>How to install?</h2>
         <div class="form-row">
           <div>
@@ -138,13 +138,12 @@
             />
           </div>
           <div class="form-group">
-            <label>&nbsp;</label>
             <button type="button" id="clearFilters">Clear Filters</button>
           </div>
         </div>
       </div>
 
-      <div id="galleryContainer"></div>
+      <div id="galleryContainer" class="gallery-container"></div>
 
       <footer class="footer">
         <p>
@@ -163,7 +162,12 @@
     </div>
 
     <script>
-      const API_URL = "http://localhost:3000";
+      var API_URL =
+        "https://frankriezebos.github.io/running-train-liveries/public/index.html";
+
+      if (window && window.location.href.includes("localhost")) {
+        var API_URL = "http://localhost:3000";
+      }
 
       // Live reload - check for server restarts and refresh page
       let lastServerCheck = Date.now();

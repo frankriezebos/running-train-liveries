@@ -79,6 +79,7 @@ select:focus {
   display: flex;
   margin-bottom: 15px;
   flex-direction: column;
+  gap: 10px;
 }
 
 .form-row .form-group {
@@ -256,4 +257,38 @@ button:active {
 
 .footer a {
   color: inherit;
+}
+
+@media (width < 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    order: 1;
+  }
+
+  .filter-section {
+    order: 2;
+    margin-bottom: 20px;
+  }
+
+  #galleryContainer {
+    order: 3;
+  }
+
+  .upload-section {
+    order: 4;
+  }
+
+  .instructions-section {
+    order: 5;
+    word-break: break-all;
+  }
+
+  .footer {
+    order: 6;
+    margin-top: 0;
+  }
 }
