@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liveries for Running Train</title>
+    <meta
+      name="description"
+      content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Liveries for Running Train</h1>
+        <p>Share and discover custom train liveries</p>
+      </header>
+
+      <div class="section">
+        <h2>Upload Your Livery</h2>
+        <div class="notice">
+          <p>
+            <strong>Important:</strong> Please make sure your texture does not
+            contain any copyrighted material like logos or trademarks. We don't
+            want any trouble! :-)
+          </p>
+        </div>
+
+        <form id="uploadForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="trainType">Train Type *</label>
+              <select id="trainType" required>
+                <option value="">Select a train type</option>
+                <option value="1100">1100</option>
+                <option value="1500">1500</option>
+                <option value="KC5000">KC5000</option>
+                <option value="DC85">DC85</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="color">Color/Description *</label>
+              <input
+                type="text"
+                id="color"
+                placeholder="e.g., Red and White, Blue Classic"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="name">Your Name (optional)</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="e.g., John Doe (optional)"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="file">Upload your .jpg texture file *</label>
+            <input type="file" id="file" accept=".jpg,.jpeg" required />
+          </div>
+
+          <button type="submit">Upload Livery</button>
+          <div id="uploadMessage" class="message"></div>
+        </form>
+      </div>
+
+      <div class="section">
+        <h2>How to install a livery texture?</h2>
+        <p>
+          Very easy! Just download the texture and place it in the appropriate
+          folder for your train model within C:\Program Files
+          (x86)\Steam\steamapps\common\RUNNING
+          TRAIN\RunningTrain\Content\UGC\Textures. Replace it with an empty
+          tex.jpg file.
+        </p>
+      </div>
+
+      <div class="filter-section">
+        <h3>🔍 Filter Liveries</h3>
+        <div class="filter-row">
+          <div class="form-group">
+            <label for="filterTrain">Train Type</label>
+            <select id="filterTrain">
+              <option value="">All Trains</option>
+              <option value="1100">1100</option>
+              <option value="1500">1500</option>
+              <option value="KC5000">KC5000</option>
+              <option value="DC85">DC85</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="filterColor">Color/Description</label>
+            <input
+              type="text"
+              id="filterColor"
+              placeholder="Search colors..."
+            />
+          </div>
+          <div class="form-group">
+            <label>&nbsp;</label>
+            <button type="button" id="clearFilters">Clear Filters</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="galleryContainer"></div>
+
+      <footer class="footer">
+        <p>
+          Made with ❤️ for the Running Train community. Share your designs and
+          enjoy others' creativity!<br /><strong>Disclaimer:</strong> I am not
+          affiliated with the game developers, just a fan sharing a passion for
+          custom train liveries. Please respect copyright and avoid uploading
+          any designs that contain logos or trademarks. Rights reserved to
+          Novatetsu Games and Steam. Happy designing and playing!
+        </p>
+
+        <a href="mailto:frank_rdam@live.nl" title="Contact me"
+          >Contact me for any questions or issues</a
+        >
+      </footer>
+    </div>
+
+    <script>
+      const API_URL = "http://localhost:3000";
+
+      // Live reload - check for server restarts and refresh page
+      let lastServerCheck = Date.now();
+      setInterval(async () => {
+        try {
+          const response = await fetch(
+            `${API_URL}/api/liveries?_t=${Date.now()}`,
+            { cache: "no-store" },
+          );
+          const now = Date.now();
+          // If server was down and is now back, reload
+          if (now - lastServerCheck > 3000) {
+            location.reload();
+          }
+          lastServerCheck = now;
+        } catch (e) {
+          // Server might be down, will reload when back
+        }
+      }, 1000);
+
+      // Upload form handler
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const messageEl = document.getElementById("uploadMessage");
+          messageEl.classList.remove("success", "error");
+          messageEl.innerHTML = "";
+
+          const formData = new FormData();
+          formData.append("file", document.getElementById("file").files[0]);
+          formData.append("name", document.getElementById("name").value);
+          formData.append(
+            "trainType",
+            document.getElementById("trainType").value,
+          );
+          formData.append("color", document.getElementById("color").value);
+
+          try {
+            const response = await fetch(`${API_URL}/api/upload`, {
+              method: "POST",
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+              messageEl.classList.add("success");
+              messageEl.innerHTML = "✓ Livery uploaded successfully!";
+              document.getElementById("uploadForm").reset();
+              loadLiveries();
+            } else {
+              messageEl.classList.add("error");
+              messageEl.innerHTML = `✗ Error: ${result.error}`;
+            }
+          } catch (error) {
+            messageEl.classList.add("error");
+            messageEl.innerHTML = `✗ Error: ${error.message}`;
+          }
+        });
+
+      // Load liveries
+      async function loadLiveries() {
+        const trainFilter = document.getElementById("filterTrain").value;
+        const colorFilter = document.getElementById("filterColor").value;
+
+        let url = `${API_URL}/api/liveries?`;
+        if (trainFilter) url += `trainType=${trainFilter}&`;
+        if (colorFilter) url += `color=${encodeURIComponent(colorFilter)}`;
+
+        try {
+          const response = await fetch(url);
+          const liveries = await response.json();
+          renderGallery(liveries);
+        } catch (error) {
+          console.error("Error loading liveries:", error);
+        }
+      }
+
+      // Render gallery
+      function renderGallery(liveries) {
+        const container = document.getElementById("galleryContainer");
+
+        if (liveries.length === 0) {
+          container.innerHTML =
+            '<div class="empty-message">No liveries found. Be the first to upload!</div>';
+          return;
+        }
+
+        container.innerHTML =
+          '<div class="gallery">' +
+          liveries
+            .map(
+              (livery) => `
+          <div class="livery-card">
+            <img src="${API_URL}/uploads/${livery.filename}" alt="${livery.color}" class="livery-image">
+            <div class="livery-info">
+              <h4>${livery.trainType}</h4>
+              <div class="livery-details">
+                ${livery.name ? `<p><strong>Creator:</strong> ${livery.name}</p>` : ""}
+                <p><strong>Color:</strong> ${livery.color}</p>
+                <p><strong>Uploaded:</strong> ${new Date(livery.uploadedAt).toLocaleDateString()}</p>
+              </div>
+              <a class="btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Download</a>
+            </div>
+          </div>
+        `,
+            )
+            .join("") +
+          "</div>";
+      }
+
+      // Delete livery
+      async function deleteLivery(id) {
+        if (!confirm("Are you sure you want to delete this livery?")) return;
+
+        try {
+          const response = await fetch(`${API_URL}/api/liveries/${id}`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            loadLiveries();
+          } else {
+            alert("Error deleting livery");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error deleting livery");
+        }
+      }
+
+      // Filter handlers
+      document
+        .getElementById("filterTrain")
+        .addEventListener("change", loadLiveries);
+      document
+        .getElementById("filterColor")
+        .addEventListener("input", loadLiveries);
+
+      document.getElementById("clearFilters").addEventListener("click", () => {
+        document.getElementById("filterTrain").value = "";
+        document.getElementById("filterColor").value = "";
+        loadLiveries();
+      });
+
+      // Initial load
+      loadLiveries();
+    </script>
+  </body>
+</html>
