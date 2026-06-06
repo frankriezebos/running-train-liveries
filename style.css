@@ -166,7 +166,8 @@ button:active {
 
 .filter-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: flex-end;
   gap: 15px;
 }
 
