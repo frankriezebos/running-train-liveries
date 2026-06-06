@@ -11,10 +11,10 @@ app.use(cors());
 app.use(express.json());
 
 // Create uploads directory if it doesn't exist
-const uploadsDir = process.env.VERCEL 
-  ? "/tmp/uploads" 
+const uploadsDir = process.env.VERCEL
+  ? "/tmp/uploads"
   : path.join(__dirname, "../uploads");
-  
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -128,30 +128,10 @@ app.get("/api/liveries", (req, res) => {
   res.json(liveries);
 });
 
-// Delete livery
-app.delete("/api/liveries/:id", (req, res) => {
-  const liveries = loadLiveries();
-  const livery = liveries.find((l) => l.id == req.params.id);
-
-  if (!livery) {
-    return res.status(404).json({ error: "Livery not found" });
-  }
-
-  const filePath = path.join(uploadsDir, livery.filename);
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-  }
-
-  const updated = liveries.filter((l) => l.id != req.params.id);
-  saveLiveries(updated);
-
-  res.json({ success: true });
-});
-
 // Download/serve uploaded file
 app.get("/uploads/:filename", (req, res) => {
   const filePath = path.join(uploadsDir, req.params.filename);
-  
+
   if (fs.existsSync(filePath)) {
     res.download(filePath);
   } else {
