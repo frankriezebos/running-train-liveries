@@ -162,10 +162,8 @@
     </div>
 
     <script>
-      var API_URL = "https://frankriezebos.github.io/running-train-liveries/";
-
-      if (window && window.location.href.includes("localhost")) {
-        var API_URL = "http://localhost:3000";
+      if (window && window.location.href) {
+        var API_URL = window.location.href;
       }
 
       // Live reload - check for server restarts and refresh page
