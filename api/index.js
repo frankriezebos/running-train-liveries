@@ -143,4 +143,15 @@ app.delete("/api/liveries/:id", (req, res) => {
   res.json({ success: true });
 });
 
+// Download/serve uploaded file
+app.get("/uploads/:filename", (req, res) => {
+  const filePath = path.join(uploadsDir, req.params.filename);
+  
+  if (fs.existsSync(filePath)) {
+    res.download(filePath);
+  } else {
+    res.status(404).json({ error: "File not found" });
+  }
+});
+
 module.exports = app;
