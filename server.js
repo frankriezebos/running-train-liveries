@@ -125,3 +125,7 @@ app.get("/api/liveries", (req, res) => {
 
   res.json(liveries);
 });
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});

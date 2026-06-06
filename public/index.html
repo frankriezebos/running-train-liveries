@@ -264,7 +264,8 @@
             .map(
               (livery) => `
           <div class="livery-card">
-            <img src="${API_URL}/uploads/${livery.thumbnail ? livery.thumbnail : livery.filename}" alt="${livery.color}" class="livery-image">
+            <img src="${livery.thumbnailUrl ? livery.thumbnailUrl : livery.fileUrl}" alt="${livery.color}" class="livery-image">
+
             <div class="livery-info">
               <h4>${livery.trainType}</h4>
               <div class="livery-details">
@@ -273,8 +274,8 @@
                 <p><strong>Uploaded:</strong> ${new Date(livery.uploadedAt).toLocaleDateString()}</p>
               </div>
               <div class="download-btns">
-                <a class="btn download-btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Download livery</a>
-                ${livery.thumbnail ? `<a class="btn download-btn" title="Download thumb" href="${API_URL}/uploads/${livery.thumbnail}" download>Download thumb</a>` : ""}
+                <a class="btn download-btn" href="${livery.fileUrl}" download>Download livery</a>
+                ${livery.thumbnailUrl ? `<a class="btn download-btn" href="${livery.thumbnailUrl}" download>Download thumb</a>` : ""}
               </div>
             </div>
           </div>

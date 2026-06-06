@@ -1,60 +1,32 @@
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
-const path = require("path");
 const fs = require("fs");
+const path = require("path");
+const { put } = require("@vercel/blob");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Create uploads directory if it doesn't exist
-const uploadsDir = process.env.VERCEL
-  ? "/tmp/uploads"
-  : path.join(__dirname, "../uploads");
-
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
-// Multer configuration
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadsDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  const allowedMimes = ["image/jpeg"];
-  if (allowedMimes.includes(file.mimetype)) {
-    cb(null, true);
-  } else {
-    cb(new Error("Only .jpg files are allowed"));
-  }
-};
-
 const upload = multer({
-  storage,
-  fileFilter,
+  storage: multer.memoryStorage(),
+  fileFilter: (req, file, cb) => {
+    const allowedMimes = ["image/jpeg"];
+    if (allowedMimes.includes(file.mimetype)) cb(null, true);
+    else cb(new Error("Only .jpg files are allowed"));
+  },
   limits: { fileSize: 10 * 1024 * 1024 },
 });
 
-// Metadata file
 const metadataFile = process.env.VERCEL
   ? "/tmp/liveries.json"
   : path.join(__dirname, "../liveries.json");
 
-// Load or initialize liveries data
 function loadLiveries() {
   if (fs.existsSync(metadataFile)) {
-    const data = fs.readFileSync(metadataFile, "utf8");
-    return JSON.parse(data);
+    return JSON.parse(fs.readFileSync(metadataFile, "utf8"));
   }
   return [];
 }
@@ -63,54 +35,78 @@ function saveLiveries(liveries) {
   fs.writeFileSync(metadataFile, JSON.stringify(liveries, null, 2));
 }
 
-// Upload livery
 app.post(
   "/api/upload",
   upload.fields([
     { name: "file", maxCount: 1 },
     { name: "thumbnail", maxCount: 1 },
   ]),
-  (req, res) => {
-    if (!req.files || !req.files.file) {
-      return res.status(400).json({ error: "No file uploaded" });
+  async (req, res, next) => {
+    try {
+      if (!req.files || !req.files.file) {
+        return res.status(400).json({ error: "No file uploaded" });
+      }
+
+      const { trainType, color, name } = req.body;
+
+      if (!trainType || !color) {
+        return res
+          .status(400)
+          .json({ error: "Train type and color are required" });
+      }
+
+      const validTrainTypes = ["1100", "1500", "KC5000", "DC85"];
+      if (!validTrainTypes.includes(trainType)) {
+        return res.status(400).json({ error: "Invalid train type" });
+      }
+
+      const file = req.files.file[0];
+      const thumbnail = req.files.thumbnail ? req.files.thumbnail[0] : null;
+
+      const fileBlob = await put(
+        `liveries/${Date.now()}-${file.originalname}`,
+        file.buffer,
+        {
+          access: "public",
+          contentType: file.mimetype,
+          token: process.env.BLOB_READ_WRITE_TOKEN,
+        },
+      );
+
+      let thumbnailBlob = null;
+      if (thumbnail) {
+        thumbnailBlob = await put(
+          `liveries/thumbnails/${Date.now()}-${thumbnail.originalname}`,
+          thumbnail.buffer,
+          {
+            access: "public",
+            contentType: thumbnail.mimetype,
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          },
+        );
+      }
+
+      const livery = {
+        id: Date.now(),
+        fileUrl: fileBlob.url,
+        thumbnailUrl: thumbnailBlob ? thumbnailBlob.url : null,
+        name,
+        trainType,
+        color,
+        uploadedAt: new Date().toISOString(),
+      };
+
+      const liveries = loadLiveries();
+      liveries.push(livery);
+      saveLiveries(liveries);
+
+      res.json({ success: true, livery });
+    } catch (err) {
+      next(err);
     }
-
-    const { trainType, color, name } = req.body;
-
-    if (!trainType || !color) {
-      if (req.files.file) fs.unlinkSync(req.files.file[0].path);
-      if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
-      return res
-        .status(400)
-        .json({ error: "Train type and color are required" });
-    }
-
-    const validTrainTypes = ["1100", "1500", "KC5000", "DC85"];
-    if (!validTrainTypes.includes(trainType)) {
-      if (req.files.file) fs.unlinkSync(req.files.file[0].path);
-      if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
-      return res.status(400).json({ error: "Invalid train type" });
-    }
-
-    const livery = {
-      id: Date.now(),
-      filename: req.files.file[0].filename,
-      thumbnail: req.files.thumbnail ? req.files.thumbnail[0].filename : null,
-      name,
-      trainType,
-      color,
-      uploadedAt: new Date().toISOString(),
-    };
-
-    const liveries = loadLiveries();
-    liveries.push(livery);
-    saveLiveries(liveries);
-
-    res.json({ success: true, livery });
   },
 );
 
-// Get filtered liveries
 app.get("/api/liveries", (req, res) => {
   const { trainType, color } = req.query;
   let liveries = loadLiveries();
@@ -128,31 +124,20 @@ app.get("/api/liveries", (req, res) => {
   res.json(liveries);
 });
 
-// Download/serve uploaded file
-app.get("/uploads/:filename", (req, res) => {
-  const filePath = path.join(uploadsDir, req.params.filename);
-
-  if (fs.existsSync(filePath)) {
-    res.download(filePath);
-  } else {
-    res.status(404).json({ error: "File not found" });
-  }
-});
-
-// 404 handler
 app.use((req, res) => {
   res.status(404).json({ error: "Not found" });
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error("Error:", err);
+
   if (err.code === "LIMIT_FILE_SIZE") {
     return res.status(413).json({ error: "File too large" });
   }
   if (err.message && err.message.includes("Only .jpg files")) {
     return res.status(400).json({ error: err.message });
   }
+
   res.status(500).json({ error: err.message || "Server error" });
 });
 
