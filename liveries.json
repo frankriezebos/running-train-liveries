@@ -7,11 +7,20 @@
     "uploadedAt": "2026-06-06T15:35:31.314Z"
   },
   {
-    "id": 1780761174324,
-    "filename": "1780761174321-611890466.jpg",
+    "id": 1780762625596,
+    "filename": "1780762625593-737618597.jpg",
+    "name": "Frank",
+    "trainType": "1100",
+    "color": "Lime green with purple lines",
+    "uploadedAt": "2026-06-06T16:17:05.596Z"
+  },
+  {
+    "id": 1780763564056,
+    "filename": "1780763564042-877160411.jpg",
+    "thumbnail": "1780763564044-365261024.jpg",
     "name": "Frank",
     "trainType": "1100",
     "color": "Bright green with purple stripes",
-    "uploadedAt": "2026-06-06T15:52:54.324Z"
+    "uploadedAt": "2026-06-06T16:32:44.056Z"
   }
 ]

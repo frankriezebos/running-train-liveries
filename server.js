@@ -62,15 +62,16 @@ function saveLiveries(liveries) {
 }
 
 // Upload livery
-app.post("/api/upload", upload.single("file"), (req, res) => {
-  if (!req.file) {
+app.post("/api/upload", upload.fields([{ name: "file", maxCount: 1 }, { name: "thumbnail", maxCount: 1 }]), (req, res) => {
+  if (!req.files || !req.files.file) {
     return res.status(400).json({ error: "No file uploaded" });
   }
 
   const { trainType, color, name } = req.body;
 
   if (!trainType || !color) {
-    fs.unlinkSync(req.file.path);
+    if (req.files.file) fs.unlinkSync(req.files.file[0].path);
+    if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
     return res
       .status(400)
       .json({ error: "Train type and color are required" });
@@ -78,13 +79,15 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 
   const validTrainTypes = ["1100", "1500", "KC5000", "DC85"];
   if (!validTrainTypes.includes(trainType)) {
-    fs.unlinkSync(req.file.path);
+    if (req.files.file) fs.unlinkSync(req.files.file[0].path);
+    if (req.files.thumbnail) fs.unlinkSync(req.files.thumbnail[0].path);
     return res.status(400).json({ error: "Invalid train type" });
   }
 
   const livery = {
     id: Date.now(),
-    filename: req.file.filename,
+    filename: req.files.file[0].filename,
+    thumbnail: req.files.thumbnail ? req.files.thumbnail[0].filename : null,
     name,
     trainType,
     color,

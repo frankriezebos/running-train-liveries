@@ -32,8 +32,10 @@
         <div class="notice">
           <p>
             <strong>Important:</strong> Please make sure your texture does not
-            contain any copyrighted material like logos or trademarks. We don't
-            want any trouble! :-)
+            contain any copyrighted material like logos, trademarks or cartoons.
+            I know it sucks because I also created a Pikachu and Mario livery
+            but due to copyright rules I can't share it. So please only share
+            fictional and original designs. We don't want any trouble! :-)
           </p>
         </div>
 
@@ -70,9 +72,18 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="file">Upload your .jpg texture file *</label>
-            <input type="file" id="file" accept=".jpg,.jpeg" required />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="file">Upload your .jpg texture file *</label>
+              <input type="file" id="file" accept=".jpg,.jpeg" required />
+            </div>
+
+            <div class="form-group">
+              <label for="thumb_file"
+                >Upload your .jpg thumbnail file (optional)</label
+              >
+              <input type="file" id="thumb_file" accept=".jpg,.jpeg" />
+            </div>
           </div>
 
           <button type="submit">Upload Livery</button>
@@ -81,14 +92,30 @@
       </div>
 
       <div class="section">
-        <h2>How to install a livery texture?</h2>
-        <p>
-          Very easy! Just download the texture and place it in the appropriate
-          folder for your train model within C:\Program Files
-          (x86)\Steam\steamapps\common\RUNNING
-          TRAIN\RunningTrain\Content\UGC\Textures. Replace it with an empty
-          tex.jpg file.
-        </p>
+        <h2>How to install?</h2>
+        <div class="form-row">
+          <div>
+            <h3>Livery texture</h3>
+            <p>
+              Very easy! Just download the texture and place it in the
+              appropriate folder for your train model within C:\Program Files
+              (x86)\Steam\steamapps\common\RUNNING
+              TRAIN\RunningTrain\Content\UGC\Textures. Optional: you can make a
+              backup of the original empty blueprint files first. Rename the
+              downloaded file to tex3.jpg or tex4.jpg and replace.
+            </p>
+          </div>
+
+          <div>
+            <h3>Thumbnail</h3>
+            <p>
+              Download the thumbnail and place it in the thumb folder for your
+              train model. Optional: you can make a backup of the original
+              files. Rename the downloaded file to thumb3.jpg or thumb4.jpg and
+              replace.
+            </p>
+          </div>
+        </div>
       </div>
 
       <div class="filter-section">
@@ -170,6 +197,12 @@
 
           const formData = new FormData();
           formData.append("file", document.getElementById("file").files[0]);
+          if (document.getElementById("thumb_file").files[0]) {
+            formData.append(
+              "thumbnail",
+              document.getElementById("thumb_file").files[0],
+            );
+          }
           formData.append("name", document.getElementById("name").value);
           formData.append(
             "trainType",
@@ -234,7 +267,7 @@
             .map(
               (livery) => `
           <div class="livery-card">
-            <img src="${API_URL}/uploads/${livery.filename}" alt="${livery.color}" class="livery-image">
+            <img src="${API_URL}/uploads/${livery.thumbnail ? livery.thumbnail : livery.filename}" alt="${livery.color}" class="livery-image">
             <div class="livery-info">
               <h4>${livery.trainType}</h4>
               <div class="livery-details">
@@ -242,7 +275,10 @@
                 <p><strong>Color:</strong> ${livery.color}</p>
                 <p><strong>Uploaded:</strong> ${new Date(livery.uploadedAt).toLocaleDateString()}</p>
               </div>
-              <a class="btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Download</a>
+              <div class="download-btns">
+                <a class="btn download-btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Download livery</a>
+                ${livery.thumbnail ? `<a class="btn download-btn" title="Download thumb" href="${API_URL}/uploads/${livery.thumbnail}" download>Download thumb</a>` : ""}
+              </div>
             </div>
           </div>
         `,
