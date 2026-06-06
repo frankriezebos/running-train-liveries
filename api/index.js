@@ -69,8 +69,7 @@ app.post(
         {
           access: "public",
           contentType: file.mimetype,
-          oidcToken: process.env.VERCEL_OIDC_TOKEN,
-          storeId: process.env.BLOB_STORE_ID,
+          token: process.env.BLOB_READ_WRITE_TOKEN,
         },
       );
 
