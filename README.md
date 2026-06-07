@@ -54,6 +54,7 @@ running-train-liveries/
 - **Supported formats**: .jpg, .jpeg only
 - **Local development**: Node.js & PHP
 - **Free hosting**: InfinityFree
+- **Free deployment Git -> FTP**: DeployHQ
 
 ## Local development usage
 
