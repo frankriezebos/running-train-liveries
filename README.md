@@ -2,7 +2,7 @@
 
 A simple web application where users can upload and filter custom train liveries for the Running Train game.
 
-[Go to the webpage](https://running-train-liveries.vercel.app/)
+[Go to the webpage](https://running-train-liveries.gamer.free)
 
 ## Features
 
@@ -42,11 +42,17 @@ running-train-liveries/
 
 ## Technical Details
 
-- **Backend**: Express.js with Multer for file uploads
+- **Backend**: PHP
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Storage**: Local file system with JSON metadata
 - **Max file size**: 10MB per upload
 - **Supported formats**: .jpg, .jpeg only
+- **Local development**: Nodejs & PHP
+
+## Local development usage
+
+- npm install
+- php -S localhost:8000 router.php
 
 ## Notes
 
