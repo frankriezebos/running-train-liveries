@@ -140,7 +140,8 @@
         custom train liveries. Please respect copyright and avoid uploading
         any designs that contain logos or trademarks. All rights reserved to the respectful owners of the original game
         assets: Novatetsu Games. I've requested them for permission on X. Let's await his response! If they decline, I
-        have to remove the site. Happy designing and playing!
+        have to remove the site. I'm not responsible for any misuse of the uploaded content. Happy designing and
+        playing!
       </p>
 
       <a href="mailto:frank_rdam@live.nl" title="Contact me">Contact me for any questions or issues</a>
