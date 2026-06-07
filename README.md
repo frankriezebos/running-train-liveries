@@ -54,6 +54,7 @@ running-train-liveries/
 - **Max file size**: 10MB per upload
 - **Supported formats**: .jpg, .jpeg only
 - **Local development**: Nodejs & PHP
+- **Free hosting**: InfinityFree
 
 ## Local development usage
 
