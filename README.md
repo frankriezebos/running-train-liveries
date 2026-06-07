@@ -2,7 +2,7 @@
 
 A simple web application where users can upload and download custom train liveries for the Running Train game.
 
-Site is not published (yet). I've just removed the free website due to virusscanner Avast marking it as unsafe. I'm not going to pay €35 for a paid hosting so I don't think it will get live any soon.
+Site will soon be published on a paid hosting and domain https://running-train-fans.nl
 
 ## Features
 
