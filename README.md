@@ -34,9 +34,13 @@ A simple web application where users can upload and filter custom train liveries
 running-train-liveries/
 ├── api
 │   └── liveries.php    # Backend PHP for adding liveries to liveries.json
+├── css
+│   └── style.css       # Frontend CSS
+├── js
+│   └── script.css      # Frontend JS
 ├── uploads/            # Uploaded livery images (auto-created)
 ├── package.json        # Node.js dependencies (for local development only)
-├── index.php           # Frontend HTML/CSS/JS
+├── index.php           # Frontend HTML
 ├── liveries.json       # Metadata for all uploads (auto-created)
 ├── router.php          # Required for local development
 └── README.md           # This file
