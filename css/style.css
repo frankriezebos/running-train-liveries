@@ -207,6 +207,12 @@ button:active {
   gap: 15px;
 }
 
+@media (width > 925px) {
+  .filter-row {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .filter-row {
     grid-template-columns: 1fr;

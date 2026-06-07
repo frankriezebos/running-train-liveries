@@ -2,11 +2,13 @@
 async function loadLiveries() {
   const trainFilter = document.getElementById("filterTrain").value;
   const colorFilter = document.getElementById("filterColor").value;
+  const nameFilter = document.getElementById("filterName").value;
   const sortOrder = document.getElementById("sortOrder").value;
 
   let url = `${API_URL}/api/liveries?`;
   if (trainFilter) url += `trainType=${trainFilter}&`;
-  if (colorFilter) url += `color=${encodeURIComponent(colorFilter)}`;
+  if (colorFilter) url += `color=${encodeURIComponent(colorFilter)}&`;
+  if (nameFilter) url += `name=${encodeURIComponent(nameFilter)}`;
 
   try {
     const response = await fetch(url);
@@ -66,10 +68,12 @@ function renderGallery(liveries) {
 document.getElementById("filterTrain").addEventListener("input", loadLiveries);
 document.getElementById("filterTrain").addEventListener("change", loadLiveries);
 document.getElementById("filterColor").addEventListener("input", loadLiveries);
+document.getElementById("filterName").addEventListener("input", loadLiveries);
 
 document.getElementById("clearFilters").addEventListener("click", () => {
   document.getElementById("filterTrain").value = "";
   document.getElementById("filterColor").value = "";
+  document.getElementById("filterName").value = "";
   loadLiveries();
 });
 

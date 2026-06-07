@@ -29,6 +29,17 @@ if (isset($_GET['color']) && $_GET['color'] !== '') {
     $liveries = array_values($liveries);
 }
 
+if (isset($_GET['name']) && $_GET['name'] !== '') {
+    $name = strtolower($_GET['name']);
+
+    $liveries = array_filter($liveries, function ($item) use ($name) {
+        return isset($item['name']) &&
+               strpos(strtolower($item['name']), $name) !== false;
+    });
+
+    $liveries = array_values($liveries);
+}
+
 // optional: map filenames to full URLs
 $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];

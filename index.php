@@ -47,6 +47,10 @@
           <input type="text" id="filterColor" placeholder="Search colors..." />
         </div>
         <div class="form-group">
+          <label for="filterName">Author name</label>
+          <input type="text" id="filterName" placeholder="Search author name..." />
+        </div>
+        <div class="form-group">
           <button type="button" id="clearFilters">Clear Filters</button>
         </div>
         <div class="form-group">
