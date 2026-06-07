@@ -1,2 +1,8 @@
 RewriteEngine On
+
+# 1) Redirect externally to HTTPS (preserve host and URI)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2) Internal rewrite for the API path
 RewriteRule ^api/liveries$ /api/liveries.php [L]
