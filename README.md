@@ -26,6 +26,7 @@ A simple web application where users can upload and filter custom train liveries
 - Use the **Train Type** filter to show only liveries for a specific train
 - Use the **Color/Description** filter to search by text
 - Click **Clear Filters** to reset all filters
+- Sort by Newest or Oldest
 
 ## File Structure
 
