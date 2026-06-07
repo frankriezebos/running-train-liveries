@@ -32,12 +32,13 @@ A simple web application where users can upload and filter custom train liveries
 
 ```
 running-train-liveries/
-├── server.js           # Express backend server
-├── package.json        # Node.js dependencies
-├── public/
-│   └── index.html      # Frontend HTML/CSS/JS
+├── api
+│   └── liveries.php    # Backend PHP for adding liveries to liveries.json
 ├── uploads/            # Uploaded livery images (auto-created)
+├── package.json        # Node.js dependencies (for local development only)
+├── index.php           # Frontend HTML/CSS/JS
 ├── liveries.json       # Metadata for all uploads (auto-created)
+├── router.php          # Required for local development
 └── README.md           # This file
 ```
 
