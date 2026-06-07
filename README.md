@@ -1,6 +1,6 @@
 # Running Train Liveries
 
-A simple web application where users can upload and filter custom train liveries for the Running Train game.
+A simple web application where users can upload and download custom train liveries for the Running Train game.
 
 [Go to the webpage](https://running-train-liveries.gamer.free)
 
