@@ -52,12 +52,12 @@ running-train-liveries/
 - **Storage**: Local file system with JSON metadata
 - **Max file size**: 10MB per upload
 - **Supported formats**: .jpg, .jpeg only
-- **Local development**: Nodejs & PHP
+- **Local development**: Node.js & PHP
 - **Free hosting**: InfinityFree
 
 ## Local development usage
 
-- First make sure you have npm and php installed on your system
+- First make sure you have Node.js and php installed on your system
 - php -S localhost:8000 router.php
 
 ## Notes
