@@ -22,7 +22,6 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
       msg.textContent =
         "Upload successful! 🎉 You can see it on home (Discover liveries)";
       msg.className = "message success";
-      await loadLiveries();
     } else {
       msg.textContent = result.error || "Upload failed";
       msg.className = "message error";
