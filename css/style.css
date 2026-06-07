@@ -260,6 +260,20 @@ button:active {
   color: inherit;
 }
 
+.footer-bottom {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
 @media (width < 768px) {
   .container {
     display: flex;
@@ -291,5 +305,9 @@ button:active {
   .footer {
     order: 6;
     margin-top: 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
   }
 }
