@@ -174,10 +174,17 @@ button:active {
 @media (max-width: 768px) {
   .filter-row {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .form-row {
     grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0;
+  }
+
+  .instructions-section .form-row {
+    gap: 15px;
   }
 
   h1 {
