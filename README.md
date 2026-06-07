@@ -52,6 +52,7 @@ running-train-liveries/
 
 ## Local development usage
 
+- First make sure you have npm and php installed on your system
 - npm install
 - php -S localhost:8000 router.php
 
