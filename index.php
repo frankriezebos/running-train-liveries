@@ -138,8 +138,8 @@
         enjoy others' creativity!<br /><strong>Disclaimer:</strong> I am not
         affiliated with the game developers, just a fan sharing a passion for
         custom train liveries. Please respect copyright and avoid uploading
-        any designs that contain logos or trademarks. Rights reserved to
-        Novatetsu Games and Steam. Happy designing and playing!
+        any designs that contain logos or trademarks. All rights reserved to the respectful owners of the original game
+        assets: Novatetsu Games. Happy designing and playing!
       </p>
 
       <a href="mailto:frank_rdam@live.nl" title="Contact me">Contact me for any questions or issues</a>

@@ -60,4 +60,9 @@ running-train-liveries/
 - Metadata is saved in `liveries.json`
 - Uploads are stored in the `uploads/` directory
 
+## Disclaimer
+
+- I'm not affiliated with the game developer of Running Train, Novatetsu Games.
+- I've requested permission for this site to the developer on X. I'm awaiting approval. If he would decline, I'd have to remove this site.
+
 Enjoy sharing your Running Train liveries! 🚂
