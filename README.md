@@ -72,3 +72,11 @@ running-train-liveries/
 - I'm not responsible for any misuse of the uploaded content.
 
 Enjoy sharing your Running Train liveries! 🚂
+
+## Donate
+
+I would really appreciate if you would like to donate to cover the costs for hosting and domain (€24,78 p/y)
+
+[PayPal donate link](https://www.paypal.com/donate/?hosted_button_id=5C7YVGXN3P7FC)
+
+Thanks a lot! It also means you appreciate my work / the fan website and I take it as a compliment and it will keep me motivated :-)
