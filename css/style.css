@@ -343,8 +343,10 @@ button:active {
     margin-top: 0;
   }
 
-  .footer-bottom {
-    flex-direction: column;
+  .footer-link {
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
   }
 
   .main-nav ul {
@@ -357,5 +359,11 @@ button:active {
   .main-nav a.active {
     padding: 10px 5px;
     width: 100%;
+  }
+}
+
+@media (width < 1025px) {
+  .footer-bottom {
+    flex-direction: column;
   }
 }
