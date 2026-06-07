@@ -32,6 +32,20 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.main-nav {
+  margin-top: 20px;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .section {
   background: white;
   border-radius: 10px;
@@ -93,8 +107,29 @@ select:focus {
   }
 }
 
+.main-nav a {
+  color: #342899;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.main-nav a:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
 button,
-.btn {
+.btn,
+.main-nav a.active {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 12px 30px;
@@ -111,7 +146,8 @@ button,
 }
 
 button:hover,
-.btn:hover {
+.btn:hover,
+.main-nav a:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
@@ -287,34 +323,39 @@ button:active {
     flex-direction: column;
   }
 
-  header {
-    order: 1;
-  }
-
   .filter-section {
-    order: 2;
     margin-bottom: 20px;
   }
 
-  #galleryContainer {
-    order: 3;
-  }
-
-  .upload-section {
-    order: 4;
-  }
-
   .instructions-section {
-    order: 5;
     word-break: break-word;
   }
 
+  header {
+    margin-bottom: 20px;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
   .footer {
-    order: 6;
     margin-top: 0;
   }
 
   .footer-bottom {
     flex-direction: column;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    padding: 3px;
+    gap: 6px;
+  }
+
+  .main-nav a,
+  .main-nav a.active {
+    padding: 10px 5px;
+    width: 100%;
   }
 }
