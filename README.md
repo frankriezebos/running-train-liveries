@@ -26,7 +26,7 @@ A simple web application where users can upload and filter custom train liveries
 - Use the **Train Type** filter to show only liveries for a specific train
 - Use the **Color/Description** filter to search by text
 - Click **Clear Filters** to reset all filters
-- Sort by Newest or Oldest
+- **Sort** by Newest or Oldest
 
 ## File Structure
 
@@ -39,7 +39,6 @@ running-train-liveries/
 ├── js
 │   └── script.css      # Frontend JS
 ├── uploads/            # Uploaded livery images (auto-created)
-├── package.json        # Node.js dependencies (for local development only)
 ├── index.php           # Frontend HTML
 ├── liveries.json       # Metadata for all uploads (auto-created)
 ├── router.php          # Required for local development
@@ -59,7 +58,6 @@ running-train-liveries/
 ## Local development usage
 
 - First make sure you have npm and php installed on your system
-- npm install
 - php -S localhost:8000 router.php
 
 ## Notes
