@@ -9,8 +9,8 @@
     content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!" />
   <meta robots="index, follow" />
   <meta name="keywords" content="Running Train, train liveries, custom textures, game mods, train skins" />
-  <mata property="og:title" content="Liveries for Running Train" />
-  <mata property="og:description"
+  <meta property="og:title" content="Liveries for Running Train" />
+  <meta property="og:description"
     content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
