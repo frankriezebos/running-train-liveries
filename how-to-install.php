@@ -17,7 +17,7 @@
   <div class="container">
     <header class="header">
       <h1>Liveries for Running Train</h1>
-      <p>Download and share custom train liveries</p>
+      <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車</p>
       <nav class="main-nav">
         <ul>
           <li><a href="/" title="Discover liveries">Discover liveries</a></li>
