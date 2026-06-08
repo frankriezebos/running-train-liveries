@@ -339,7 +339,16 @@ button:active {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 30px;
+  position: relative;
+}
+
+.footer-link svg {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0;
 }
 
 @media (width < 768px) {
@@ -387,8 +396,11 @@ button:active {
   }
 }
 
-@media (width < 1025px) {
+@media (width < 1125px) {
   .footer-bottom {
     flex-direction: column;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: left;
   }
 }
