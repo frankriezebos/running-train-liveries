@@ -2,7 +2,7 @@
 
 A simple web application where users can upload and download custom train liveries for the Running Train game.
 
-Site will soon be published on a paid hosting and domain https://running-train-fans.nl
+Site is now live on a paid hosting and domain: [running-train-fans.nl](https://running-train-fans.nl)
 
 ## Features
 
