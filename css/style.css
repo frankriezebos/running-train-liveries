@@ -352,6 +352,12 @@ button:active {
 }
 
 @media (width < 768px) {
+  body {
+    &::before {
+      content: unset;
+    }
+  }
+
   .container {
     display: flex;
     flex-direction: column;
