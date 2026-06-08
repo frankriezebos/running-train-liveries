@@ -5,13 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to install - Liveries for Running Train</title>
-  <meta name="description"
-    content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!" />
+  <meta name="description" content="Learn how you to install livery textures for Running Train" />
   <meta robots="index, follow" />
   <meta name="keywords" content="Running Train, train liveries, custom textures, game mods, train skins" />
   <meta property="og:title" content="How to install - Liveries for Running Train" />
-  <meta property="og:description"
-    content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!" />
+  <meta property="og:description" content="Learn how you to install livery textures for Running Train" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
