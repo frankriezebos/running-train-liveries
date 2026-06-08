@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Discover - Liveries for Running Train</title>
   <meta name="description"
-    content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!" />
+    content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites! By fans, for fans of Running Train game" />
   <meta robots="index, follow" />
   <meta name="keywords" content="Running Train, train liveries, custom textures, game mods, train skins" />
   <meta property="og:title" content="Liveries for Running Train" />
   <meta property="og:description"
-    content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites!" />
+    content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites! By fans, for fans of Running Train game" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
