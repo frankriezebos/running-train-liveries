@@ -4,7 +4,7 @@
     "filename": "1780821832-tex4.jpg",
     "thumbnail": "1780821832-thumb-thumb7.jpg",
     "name": "Frank",
-    "trainType": "1100 & 1500",
+    "trainType": "1100",
     "color": "Lime green with lightblue stripes",
     "uploadedAt": "2026-06-07T08:43:52+00:00"
   },
@@ -13,7 +13,7 @@
     "filename": "1780821854-tex6.jpg",
     "thumbnail": "1780821854-thumb-thumb6.jpg",
     "name": "Frank",
-    "trainType": "1100 & 1500",
+    "trainType": "1100",
     "color": "Lime green with purple stripes",
     "uploadedAt": "2026-06-07T08:44:14+00:00"
   },
@@ -22,7 +22,7 @@
     "filename": "1780821896-tex5.jpg",
     "thumbnail": "1780821896-thumb-thumb5.jpg",
     "name": "Frank",
-    "trainType": "1100 & 1500",
+    "trainType": "1100",
     "color": "Bright green with purple stripes",
     "uploadedAt": "2026-06-07T08:44:56+00:00"
   },
