@@ -46,7 +46,7 @@
               <option value="">Select a train type</option>
               <option value="1100">1100</option>
               <option value="1500">1500</option>
-              <option value="KC5000">KC5000</option>
+              <option value="KR5000 / KC1000">KR5000 / KC1000</option>
               <option value="DC85">DC85</option>
             </select>
           </div>

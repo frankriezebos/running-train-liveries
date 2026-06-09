@@ -75,7 +75,7 @@ $new = [
 ];
 
 // basic validation of trainType/color
-$validTrainTypes = ['1100','1500','KC5000','DC85'];
+$validTrainTypes = ['1100','1500','KR5000 / KC1000','DC85'];
 if (!$new['trainType'] || !in_array($new['trainType'], $validTrainTypes) || !$new['color']) {
   // cleanup files
   @unlink($uploadsDir . $mainName);
