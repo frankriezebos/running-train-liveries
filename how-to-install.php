@@ -39,6 +39,9 @@
             TRAIN\RunningTrain\Content\UGC\Textures. Optional: you can make a
             backup of the original empty blueprint files first. Rename the
             downloaded file to tex3.jpg or tex4.jpg and replace. For DC85 there is an extra empty slot (tex2.jpg)
+            <br />
+            <br />
+            By the way, 1500 reskins also work on 1100 and I also think vice-versa.
           </p>
         </div>
 
