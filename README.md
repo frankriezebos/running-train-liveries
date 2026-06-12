@@ -50,7 +50,7 @@ running-train-liveries/
 - **Backend**: PHP
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Storage**: Local file system with JSON metadata
-- **Max file size**: 20MB per upload
+- **Max file size**: 16MB per upload
 - **Supported formats**: .jpg, .jpeg only and .png for dir file
 - **Local development**: Node.js & PHP
 

@@ -37,7 +37,7 @@
           want any trouble! :-)
         </p>
 
-        <p>Max file size: 20 mb</p>
+        <p>Max file size: 16 mb</p>
       </div>
 
       <form id="uploadForm" method="POST" action="upload.php" enctype="multipart/form-data">
