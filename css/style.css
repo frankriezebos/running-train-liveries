@@ -183,6 +183,14 @@ button:active {
 .download-btn {
   padding: 10px 5px;
   font-size: 15px;
+  flex: 1;
+  text-align: center;
+}
+
+.download-label {
+  font-size: 0.9em;
+  color: #666;
+  padding-bottom: 3px;
 }
 
 .message {

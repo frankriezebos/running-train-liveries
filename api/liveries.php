@@ -46,5 +46,6 @@ $host = $_SERVER['HTTP_HOST'];
 foreach ($liveries as &$l) {
   $l['fileUrl'] = $scheme . '://' . $host . '/uploads/' . $l['filename'];
   $l['thumbUrl'] = $l['thumbnail'] ? ($scheme . '://' . $host . '/uploads/' . $l['thumbnail']) : null;
+  $l['dirUrl'] = $l['dir'] ? ($scheme . '://' . $host . '/uploads/' . $l['dir']) : null;
 }
 echo json_encode($liveries);

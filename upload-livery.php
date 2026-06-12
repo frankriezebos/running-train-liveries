@@ -36,6 +36,8 @@
           contain any copyrighted material like logos or trademarks. We don't
           want any trouble! :-)
         </p>
+
+        <p>Max file size: 20 mb</p>
       </div>
 
       <form id="uploadForm" method="POST" action="upload.php" enctype="multipart/form-data">
@@ -70,6 +72,11 @@
           <div class="form-group">
             <label for="thumb_file">Upload your .jpg thumbnail file (optional)</label>
             <input type="file" id="thumb_file" name="thumbnail" accept=".jpg,.jpeg" />
+          </div>
+
+          <div class="form-group">
+            <label for="dir_file">Upload your .png dir file (optional)</label>
+            <input type="file" id="dir_file" name="dir" accept=".png" />
           </div>
         </div>
 

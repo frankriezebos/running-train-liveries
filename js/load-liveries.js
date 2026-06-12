@@ -52,9 +52,11 @@ function renderGallery(liveries) {
                 <p><strong>Color:</strong> ${livery.color}</p>
                 <p><strong>Uploaded:</strong> ${new Date(livery.uploadedAt).toLocaleString()}</p>
               </div>
+              <p class="download-label"><strong>Download:</strong></p>
               <div class="download-btns">
-                <a class="btn download-btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Download livery</a>
-                ${livery.thumbnail ? `<a class="btn download-btn" title="Download thumb" href="${API_URL}/uploads/${livery.thumbnail}" download>Download thumb</a>` : ""}
+                <a class="btn download-btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Texture</a>
+                ${livery.thumbnail ? `<a class="btn download-btn" title="Download thumb" href="${API_URL}/uploads/${livery.thumbnail}" download>Thumb</a>` : ""}
+                ${livery.dir ? `<a class="btn download-btn" title="Download dir" href="${API_URL}/uploads/${livery.dir}" download>Dir</a>` : ""}
               </div>
             </div>
           </div>

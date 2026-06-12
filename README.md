@@ -17,7 +17,7 @@ Site is now live on a paid hosting and domain: [running-train-fans.nl](https://r
 1. Select the train type from the dropdown (1100 / 1500, KR5000 / KC1000, or DC85)
 2. Enter a color or description (e.g., "Red and White", "Blue Classic")
 3. Choose a .jpg file to upload
-4. Optionally upload your thumb .jpg file
+4. Optionally upload your thumb .jpg file and dir .png file
 5. Optionally enter your name
 6. Click "Upload Livery"
 
@@ -50,8 +50,8 @@ running-train-liveries/
 - **Backend**: PHP
 - **Frontend**: Vanilla HTML/CSS/JavaScript
 - **Storage**: Local file system with JSON metadata
-- **Max file size**: 10MB per upload
-- **Supported formats**: .jpg, .jpeg only
+- **Max file size**: 20MB per upload
+- **Supported formats**: .jpg, .jpeg only and .png for dir file
 - **Local development**: Node.js & PHP
 
 ## Local development usage

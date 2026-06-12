@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
 
-// Expect form fields: file (required), thumbnail (optional), trainType, color, name
+// Expect form fields: file (required), thumbnail (optional), dir (optional), trainType, color, name
 if (!isset($_FILES['file'])) {
   http_response_code(400);
-  echo json_encode(['error' => 'No file']);
+  echo json_encode(['error' => 'Texture or thumb file is probably too large']);
   exit;
 }
 
@@ -32,8 +32,8 @@ if ($file['error'] !== UPLOAD_ERR_OK) { http_response_code(400); echo json_encod
 $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mime = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
-if ($mime !== 'image/jpeg' && $mime !== 'image/jpg') { http_response_code(400); echo json_encode(['error'=>'Only JPEG allowed']); exit; }
-if ($file['size'] > 10*1024*1024) { http_response_code(400); echo json_encode(['error'=>'File too large']); exit; }
+if ($mime !== 'image/jpeg' && $mime !== 'image/jpg' && $mime !== 'image/png') { http_response_code(400); echo json_encode(['error'=>'Only JPEG & PNG allowed']); exit; }
+if ($file['size'] > 20*1024*1024) { http_response_code(400); echo json_encode(['error'=>'File too large']); exit; }
 
 // safe filename
 function safeName($name) {
@@ -57,6 +57,19 @@ if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_
   }
 }
 
+// dir
+$dirName = null;
+if (isset($_FILES['dir']) && $_FILES['dir']['error'] === UPLOAD_ERR_OK) {
+  $t = $_FILES['dir'];
+  $tfinfo = finfo_open(FILEINFO_MIME_TYPE);
+  $tmime = finfo_file($tfinfo, $t['tmp_name']);
+  finfo_close($tfinfo);
+  if ($tmime === 'image/png') {
+    $dirName = time() . '-dir-' . safeName(basename($t['name']));
+    move_uploaded_file($t['tmp_name'], $uploadsDir . $dirName);
+  }
+}
+
 // metadata
 $liveriesFile = __DIR__ . '/liveries.json';
 $liveries = [];
@@ -71,6 +84,7 @@ $new = [
   'name' => isset($_POST['name']) ? substr(trim($_POST['name']),0,100) : null,
   'trainType' => isset($_POST['trainType']) ? $_POST['trainType'] : null,
   'color' => isset($_POST['color']) ? substr(trim($_POST['color']),0,200) : null,
+  'dir' => $dirName, // null if none
   'uploadedAt' => gmdate('c'),
 ];
 
@@ -80,6 +94,7 @@ if (!$new['trainType'] || !in_array($new['trainType'], $validTrainTypes) || !$ne
   // cleanup files
   @unlink($uploadsDir . $mainName);
   if ($thumbName) @unlink($uploadsDir . $thumbName);
+  if ($dirName) @unlink($uploadsDir . $dirName);
   http_response_code(400);
   echo json_encode(['error'=>'Train type and color required or invalid']);
   exit;
@@ -92,5 +107,14 @@ $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' :
 $host = $_SERVER['HTTP_HOST'];
 $publicMain = $scheme . '://' . $host . '/uploads/' . $mainName;
 $publicThumb = $thumbName ? ($scheme . '://' . $host . '/uploads/' . $thumbName) : null;
+$publicDir = $dirName ? ($scheme . '://' . $host . '/uploads/' . $dirName) : null;
 
-echo json_encode(['success'=>true, 'livery'=>$new, 'url'=>$publicMain, 'thumbUrl'=>$publicThumb]);
+echo json_encode(
+  [
+    'success'=>true, 
+    'livery'=>$new, 
+    'url'=>$publicMain, 
+    'thumbUrl'=>$publicThumb, 
+    'dirUrl'=>$publicDir
+  ]
+);
