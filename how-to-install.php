@@ -41,7 +41,7 @@
             downloaded file to tex3.jpg or tex4.jpg and replace. For DC85 there is an extra empty slot (tex2.jpg)
             <br />
             <br />
-            By the way, 1500 reskins also work on 1100 and I also think vice-versa.
+            By the way, 1500 reskins also work on 1100 and vice-versa.
           </p>
         </div>
 

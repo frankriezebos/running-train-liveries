@@ -36,8 +36,7 @@
           <label for="filterTrain">Train Type</label>
           <select id="filterTrain">
             <option value="">All Trains</option>
-            <option value="1100">1100</option>
-            <option value="1500">1500</option>
+            <option value="1100 / 1500">1100 / 1500</option>
             <option value="KR5000 / KC1000">KR5000 / KC1000</option>
             <option value="DC85">DC85</option>
           </select>

@@ -7,14 +7,14 @@ Site is now live on a paid hosting and domain: [running-train-fans.nl](https://r
 ## Features
 
 - 📤 **Upload** .jpg liveries with train type and color information
-- 🔍 **Filter** by train type (1100, 1500, KR5000 / KC1000, DC85) and color
+- 🔍 **Filter** by train type (1100 / 1500, KR5000 / KC1000, DC85) and color
 - 💾 **Local storage** with JSON metadata
 
 ## Usage
 
 ### Uploading a Livery
 
-1. Select the train type from the dropdown (1100, 1500, KR5000 / KC1000, or DC85)
+1. Select the train type from the dropdown (1100 / 1500, KR5000 / KC1000, or DC85)
 2. Enter a color or description (e.g., "Red and White", "Blue Classic")
 3. Choose a .jpg file to upload
 4. Optionally upload your thumb .jpg file
