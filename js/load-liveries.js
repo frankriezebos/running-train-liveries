@@ -46,10 +46,10 @@ function renderGallery(liveries) {
           <div class="livery-card">
             <img src="${API_URL}/uploads/${livery.thumbnail ? livery.thumbnail : livery.filename}" alt="${livery.color}" class="livery-image">
             <div class="livery-info">
-              <h4>${livery.trainType}</h4>
+              <h4>${livery.color}</h4>
               <div class="livery-details">
                 ${livery.name ? `<p><strong>Creator:</strong> ${livery.name}</p>` : ""}
-                <p><strong>Color:</strong> ${livery.color}</p>
+                <p><strong>Train type:</strong> ${livery.trainType}</p>
                 <p><strong>Uploaded:</strong> ${new Date(livery.uploadedAt).toLocaleString()}</p>
               </div>
               <p class="download-label"><strong>Download:</strong></p>
