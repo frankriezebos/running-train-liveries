@@ -32,7 +32,7 @@ if ($file['error'] !== UPLOAD_ERR_OK) { http_response_code(400); echo json_encod
 $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mime = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
-if ($mime !== 'image/jpeg' && $mime !== 'image/jpg' && $mime !== 'image/png') { http_response_code(400); echo json_encode(['error'=>'Only JPEG & PNG allowed']); exit; }
+// if ($mime !== 'image/jpeg' && $mime !== 'image/jpg' && $mime !== 'image/png') { http_response_code(400); echo json_encode(['error'=>'Only JPEG & PNG allowed']); exit; }
 if ($file['size'] > 16*1024*1024) { http_response_code(400); echo json_encode(['error'=>'File too large']); exit; }
 
 // safe filename
