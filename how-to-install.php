@@ -18,7 +18,8 @@
     <?php include('components/header.php'); ?>
 
     <div class="section instructions-section">
-      <h2>How to install?</h2>
+      <h1 class="h2">How to install?</h1>
+
       <div class="form-row">
         <div>
           <h3>Livery texture</h3>

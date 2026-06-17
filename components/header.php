@@ -1,7 +1,7 @@
 <?php $request_uri = $_SERVER['REQUEST_URI']; ?>
 
 <header class="header">
-  <h1>Liveries for Running Train</h1>
+  <p class="h1">Liveries for Running Train</p>
   <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車!</p>
   <nav class="main-nav">
     <ul>

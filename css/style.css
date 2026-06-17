@@ -45,10 +45,16 @@ header {
   margin-bottom: 40px;
 }
 
-h1 {
+.h1 {
   font-size: 2.5em;
   margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+h3,
+.h3 {
+  font-size: 1.2em;
 }
 
 .main-nav {
@@ -73,7 +79,8 @@ h1 {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.section h2 {
+.section h2,
+.section .h2 {
   color: #333;
   margin-bottom: 20px;
   font-size: 1.5em;
@@ -357,6 +364,21 @@ button:active {
   height: 20px;
   position: absolute;
   left: 0;
+}
+
+.date {
+  font-style: italic;
+  color: #949494;
+}
+
+.discord-btn {
+  margin-top: 20px;
+}
+
+.discord-icon {
+  width: 18px;
+  height: auto;
+  margin-right: 5px;
 }
 
 @media (width < 768px) {

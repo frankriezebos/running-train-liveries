@@ -19,7 +19,8 @@
     <?php include('components/header.php'); ?>
 
     <div class="section upload-section">
-      <h2>Upload Your Livery</h2>
+      <h1 class="h2">Upload Your Livery</h1>
+
       <div class="notice">
         <p>
           <strong>Important:</strong> Please make sure your texture does not

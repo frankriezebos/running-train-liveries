@@ -20,7 +20,7 @@
     <?php include('components/header.php'); ?>
 
     <div class="filter-section">
-      <h3>🔍 Filter Liveries</h3>
+      <h1 class="h3">🔍 Filter Liveries</h1>
       <div class="filter-row">
         <div class="form-group">
           <label for="filterTrain">Train Type</label>
