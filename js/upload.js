@@ -22,9 +22,12 @@ document.getElementById("uploadForm").addEventListener("submit", async (e) => {
       msg.textContent =
         "Upload successful! 🎉 You can see it on home (Discover liveries)";
       msg.className = "message success";
-    } else {
+    } else if (result.error) {
       msg.textContent = result.error || "Upload failed";
       msg.className = "message error";
+    } else {
+      msg.textContent = "uploading.. please wait..";
+      msg.className = "message warning";
     }
   } catch (error) {
     msg.textContent = "Upload failed: " + error.message;

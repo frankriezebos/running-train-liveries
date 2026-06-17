@@ -221,6 +221,13 @@ button:active {
   display: block;
 }
 
+.message.warning {
+  background: #ffccaa;
+  color: #aa4e11;
+  border: 1px solid rgb(224, 161, 89);
+  display: block;
+}
+
 .filter-section {
   background: white;
   border-radius: 10px;
