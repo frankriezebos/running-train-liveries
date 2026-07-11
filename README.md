@@ -53,6 +53,8 @@ running-train-liveries/
 - **Max file size**: 16MB per upload
 - **Supported formats**: .jpg, .jpeg only and .png for dir file
 - **Local development**: Node.js & PHP
+- **Auto deploy to FTP**: DeployHQ
+- **Webhosting**: 123-webhost.nl
 
 ## Local development usage
 
@@ -79,4 +81,4 @@ I would really appreciate if you would like to donate to cover the costs for hos
 
 [PayPal donate link](https://www.paypal.com/donate/?hosted_button_id=5C7YVGXN3P7FC)
 
-Thanks a lot! It also means you appreciate my work / the fan website and I take it as a compliment and it will keep me motivated :-)
+Thanks a lot! It also means you appreciate my work / the fan website and I take it as a compliment :-)
