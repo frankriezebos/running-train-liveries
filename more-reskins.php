@@ -22,7 +22,7 @@
 
       <p class="date">17-06-2026</p>
 
-      <p>Currently I'm the only uploader on this website, but there are a lot more liveries available to download on
+      <p>If you're looking for more liveries, there are a lot available on
         the official Discord of RUNNING TRAIN. I myself am not affiliated with the
         game developer or the Discord server admin. But I also post my reskins over there and there are a lot of awesome
         reskins
