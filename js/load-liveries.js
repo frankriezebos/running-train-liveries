@@ -44,7 +44,7 @@ function renderGallery(liveries) {
       .map(
         (livery) => `
           <div class="livery-card">
-            <img src="${API_URL}/uploads/${livery.thumbnail ? livery.thumbnail : livery.filename}" alt="${livery.color}" class="livery-image">
+            <img src="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.thumbnail ? livery.thumbnail : livery.filename}" alt="${livery.color}" class="livery-image">
             <div class="livery-info">
               <h4>${livery.color}</h4>
               <div class="livery-details">
