@@ -10,7 +10,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 header("Access-Control-Allow-Origin: *");
 
-$uploadsDir = __DIR__ . '/uploads/';
+// safe filename
+function safeName($name) {
+  return preg_replace('/[^A-Za-z0-9._-]/', '-', $name);
+}
+
+// author name
+$authorName = '';
+if (isset($_POST['name'])) {
+  $authorName = safeName(basename($_POST['name']));
+}
+
+// upload dir
+// add author name directory, if any 
+if ($authorName) {
+  $uploadsDir = __DIR__ . '/uploads/' . $authorName . '/';
+} else {
+  $uploadsDir = __DIR__ . '/uploads/';
+}
+
 if (!is_dir($uploadsDir)) mkdir($uploadsDir, 0755, true);
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -35,12 +53,13 @@ finfo_close($finfo);
 // if ($mime !== 'image/jpeg' && $mime !== 'image/jpg' && $mime !== 'image/png') { http_response_code(400); echo json_encode(['error'=>'Only JPEG & PNG allowed']); exit; }
 if ($file['size'] > 16*1024*1024) { http_response_code(400); echo json_encode(['error'=>'File too large']); exit; }
 
-// safe filename
-function safeName($name) {
-  return preg_replace('/[^A-Za-z0-9._-]/', '_', $name);
+// texture file name
+// add author name, if any, to uploaded texture file name
+if ($authorName) {
+  $mainName = time() . '-' . $authorName . '-tex-' . safeName(basename($file['name']));
+} else {
+  $mainName = time() . '-tex-' . safeName(basename($file['name']));
 }
-
-$mainName = time() . '-' . safeName(basename($file['name']));
 $mainPath = $uploadsDir . $mainName;
 if (!move_uploaded_file($file['tmp_name'], $mainPath)) { http_response_code(500); echo json_encode(['error'=>'Move failed']); exit; }
 
@@ -52,7 +71,13 @@ if (isset($_FILES['thumbnail']) && $_FILES['thumbnail']['error'] === UPLOAD_ERR_
   $tmime = finfo_file($tfinfo, $t['tmp_name']);
   finfo_close($tfinfo);
   if ($tmime === 'image/jpeg' || $tmime === 'image/jpg') {
-    $thumbName = time() . '-thumb-' . safeName(basename($t['name']));
+    // add author name, if any, to uploaded thumbnail file name
+    if ($authorName) {
+      $thumbName = time() . '-' . $authorName . '-thumb-' . safeName(basename($t['name']));
+    } else {
+      $thumbName = time() . '-thumb-' . safeName(basename($t['name']));
+    }
+
     move_uploaded_file($t['tmp_name'], $uploadsDir . $thumbName);
   }
 }
@@ -65,7 +90,13 @@ if (isset($_FILES['dir']) && $_FILES['dir']['error'] === UPLOAD_ERR_OK) {
   $tmime = finfo_file($tfinfo, $t['tmp_name']);
   finfo_close($tfinfo);
   if ($tmime === 'image/png') {
-    $dirName = time() . '-dir-' . safeName(basename($t['name']));
+    // add author name, if any, to uploaded dir file name
+    if ($authorName) {
+      $dirName = time() . '-' . $authorName . '-dir-' . safeName(basename($t['name']));
+    } else {
+      $dirName = time() . '-dir-' . safeName(basename($t['name']));
+    }
+
     move_uploaded_file($t['tmp_name'], $uploadsDir . $dirName);
   }
 }

@@ -54,9 +54,9 @@ function renderGallery(liveries) {
               </div>
               <p class="download-label"><strong>Download:</strong></p>
               <div class="download-btns">
-                <a class="btn download-btn" title="Download livery" href="${API_URL}/uploads/${livery.filename}" download>Texture</a>
-                ${livery.thumbnail ? `<a class="btn download-btn" title="Download thumb" href="${API_URL}/uploads/${livery.thumbnail}" download>Thumb</a>` : ""}
-                ${livery.dir ? `<a class="btn download-btn" title="Download dir" href="${API_URL}/uploads/${livery.dir}" download>Dir</a>` : ""}
+                <a class="btn download-btn" title="Download livery" href="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.filename}" download>Texture</a>
+                ${livery.thumbnail ? `<a class="btn download-btn" title="Download thumb" href="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.thumbnail}" download>Thumb</a>` : ""}
+                ${livery.dir ? `<a class="btn download-btn" title="Download dir" href="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.dir}" download>Dir</a>` : ""}
               </div>
             </div>
           </div>
