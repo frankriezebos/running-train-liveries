@@ -20,31 +20,56 @@
     <div class="section instructions-section">
       <h1 class="h2">How to install?</h1>
 
-      <div class="form-row">
-        <div>
-          <h3>Livery texture</h3>
-          <p>
-            Very easy! Just download the texture and place it in the
-            appropriate folder for your train model within C:\Program Files
-            (x86)\Steam\steamapps\common\RUNNING
-            TRAIN\RunningTrain\Content\UGC\Textures. Optional: you can make a
-            backup of the original empty blueprint files first. Rename the
-            downloaded file to tex3.jpg or tex4.jpg and replace. For DC85 there is an extra empty slot (tex2.jpg)
-            <br />
-            <br />
-            By the way, 1500 reskins also work on 1100 and vice-versa.
-          </p>
-        </div>
+      <div id="app" class="vue-tabs">
+        <ul class="tabs">
+          <li v-for="(tab, index) in tabs" :key="index" class="tab">
+            <button @click="activeTab = index" :class="activeTab === index ? 'active' : ''">{{tab}}</button>
+          </li>
+        </ul>
 
-        <div>
-          <h3>Thumbnail</h3>
-          <p>
-            Download the thumbnail and place it in the thumb folder for your
-            train model. Optional: you can make a backup of the original
-            files. Rename the downloaded file to thumb3.jpg or thumb4.jpg and
-            replace.
-          </p>
-        </div>
+        <ul class="form-row">
+          <template v-for="(tab, index) in tabs" :key="index">
+            <li v-if="activeTab === index" class="tab">
+              <h2 class="h3">{{tab}}</h2>
+
+              <ol v-if="index === 0">
+                <li>Download the texture and place it in the
+                  appropriate folder for your train model within C:\Program Files
+                  (x86)\Steam\steamapps\common\RUNNING
+                  TRAIN\RunningTrain\Content\UGC\Textures\[train model] </li>
+
+                <li>Recommended: you can make a
+                  backup of the original empty blueprint file first.</li>
+
+                <li>Rename the
+                  downloaded file to tex3.jpg or tex4.jpg and replace. For DC85 there is an extra empty slot (tex2.jpg)
+                </li>
+              </ol>
+
+              <ol v-else-if="index === 1">
+                <li>Download the thumbnail to C:\Program Files (x86)\Steam\steamapps\common\RUNNING
+                  TRAIN\RunningTrain\Content\UGC\Textures\[train model]\thumb</li>
+
+                <li>Recommended: backup existing thumb file</li>
+
+                <li>Rename downloaded file to thumb3.jpg / thumb4.jpg. For DC85 you can also use thumb2.jpg</li>
+              </ol>
+
+              <ol v-else-if="index === 2">
+                <li>Download the dir file to C:\Program Files (x86)\Steam\steamapps\common\RUNNING
+                  TRAIN\RunningTrain\Content\UGC\Textures\[train model]</li>
+
+                <li>Recommended: backup existing dir file</li>
+
+                <li>Rename downloaded file to dir.png.</li>
+              </ol>
+
+              <p v-if="index === 0">
+                By the way, 1500 reskins also work on 1100 and vice-versa.
+              </p>
+            </li>
+          </template>
+        </ul>
       </div>
     </div>
 
@@ -52,6 +77,26 @@
   </div>
 
   <script src="js/server.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script>
+  const {
+    createApp,
+    ref
+  } = Vue
+
+  createApp({
+    setup() {
+      const tabs = ref(['Texture', 'Thumbnail', 'Dir']);
+      const activeTab = ref(0);
+      return {
+        tabs,
+        activeTab
+      }
+    }
+  }).mount('#app')
+  </script>
+
 </body>
 
 </html>

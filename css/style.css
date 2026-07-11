@@ -50,6 +50,7 @@ header {
   margin-bottom: 10px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   font-weight: bold;
+  line-height: 1.2;
 }
 
 h3,
@@ -86,6 +87,11 @@ h3,
   font-size: 1.5em;
 }
 
+.section h3,
+.section .h3 {
+  font-size: 1.2em;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -120,6 +126,7 @@ select:focus {
   margin-bottom: 15px;
   flex-direction: column;
   gap: 10px;
+  list-style: none;
 }
 
 .form-row .form-group {
@@ -128,6 +135,17 @@ select:focus {
 
 @media (width > 767px) {
   .form-row {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .instructions-section .form-row {
+    flex-direction: column;
+  }
+}
+
+@media (width > 1275px) {
+  .instructions-section .form-row {
     flex-direction: row;
     gap: 15px;
   }
@@ -236,7 +254,8 @@ button:active {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.filter-section h3 {
+.filter-section h3,
+.filter-section .h3 {
   color: #333;
   margin-bottom: 15px;
 }
@@ -388,11 +407,43 @@ button:active {
   margin-right: 5px;
 }
 
+ol {
+  padding-left: 15px;
+  line-height: 1.5;
+}
+
+ol li {
+  margin-bottom: 15px;
+}
+
+.tabs {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tab button {
+  background: transparent;
+  border: 2px solid #7354af;
+  color: #7354af;
+}
+
+.tab button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* mobile */
 @media (width < 768px) {
   body {
     &::before {
       content: unset;
     }
+  }
+
+  .tab button {
+    padding: 8px 14px;
   }
 
   .container {
@@ -445,5 +496,22 @@ button:active {
     margin: 0 auto;
     max-width: 600px;
     text-align: left;
+  }
+}
+
+/* tablet, laptop, desktop */
+@media (width > 768px) {
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab button {
+    width: 100%;
+  }
+
+  .vue-tabs {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
   }
 }
