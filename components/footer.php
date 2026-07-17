@@ -6,7 +6,7 @@
     the game and custom train liveries for it. Please respect copyright and avoid uploading
     any designs that contain logos or trademarks. All rights reserved to the respectful owners of the original game
     assets: Novatetsu Games. I'm not responsible for any misuse of the uploaded content. Happy designing and
-    playing!
+    playing! A very special thanks to Kev for donating! :-)
   </p>
 
   <div class="footer-bottom">

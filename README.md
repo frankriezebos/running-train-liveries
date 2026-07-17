@@ -75,9 +75,11 @@ running-train-liveries/
 
 Enjoy sharing your Running Train liveries! 🚂
 
-## Donate
+## Donators
 
-I would really appreciate if you would like to donate to cover the costs for hosting and domain (€24,78 p/y)
+A very special thanks to Kev for donating! :-)
+
+Donations cover the costs for hosting and domain (€24,78 p/y)
 
 [PayPal donate link](https://www.paypal.com/donate/?hosted_button_id=5C7YVGXN3P7FC)
 
