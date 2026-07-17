@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$captchaLeft = random_int(2, 9);
+$captchaRight = random_int(1, 9);
+$_SESSION['uploadCaptchaAnswer'] = (string) ($captchaLeft + $captchaRight);
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -69,6 +77,19 @@
             <label for="dir_file">Upload your .png dir file (optional)</label>
             <input type="file" id="dir_file" name="dir" accept=".png" />
           </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="captchaAnswer">Anti-robot check: what is <?=$captchaLeft?> + <?=$captchaRight?>? *</label>
+            <input type="text" id="captchaAnswer" name="captchaAnswer" inputmode="numeric" autocomplete="off"
+              placeholder="Enter the number" required />
+          </div>
+        </div>
+
+        <div class="bot-trap" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
         </div>
 
         <button type="submit">Upload Livery</button>

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 header('Content-Type: application/json');
 
 // Basic CORS for local testing (remove/adjust for production)
@@ -10,9 +12,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 header("Access-Control-Allow-Origin: *");
 
+function respondWithError($statusCode, $message) {
+  http_response_code($statusCode);
+  echo json_encode(['error' => $message]);
+  exit;
+}
+
 // safe filename
 function safeName($name) {
   return preg_replace('/[^A-Za-z0-9._-]/', '-', $name);
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+  respondWithError(405, 'Method not allowed');
+}
+
+$captchaAnswer = isset($_POST['captchaAnswer']) ? trim($_POST['captchaAnswer']) : '';
+$expectedCaptchaAnswer = isset($_SESSION['uploadCaptchaAnswer']) ? (string) $_SESSION['uploadCaptchaAnswer'] : '';
+
+if (!empty($_POST['website'])) {
+  respondWithError(400, 'Robot check failed');
+}
+
+if ($expectedCaptchaAnswer === '' || $captchaAnswer === '' || $captchaAnswer !== $expectedCaptchaAnswer) {
+  respondWithError(400, 'Please solve the anti-robot check and try again');
 }
 
 // author name
@@ -31,27 +54,19 @@ if ($authorName) {
 
 if (!is_dir($uploadsDir)) mkdir($uploadsDir, 0755, true);
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405);
-  echo json_encode(['error' => 'Method not allowed']);
-  exit;
-}
-
 // Expect form fields: file (required), thumbnail (optional), dir (optional), trainType, color, name
 if (!isset($_FILES['file'])) {
-  http_response_code(400);
-  echo json_encode(['error' => 'Texture or thumb file is probably too large']);
-  exit;
+  respondWithError(400, 'Texture or thumb file is probably too large');
 }
 
 // Simple validation
 $file = $_FILES['file'];
-if ($file['error'] !== UPLOAD_ERR_OK) { http_response_code(400); echo json_encode(['error'=>'Upload error']); exit; }
+if ($file['error'] !== UPLOAD_ERR_OK) { respondWithError(400, 'Upload error'); }
 $finfo = finfo_open(FILEINFO_MIME_TYPE);
 $mime = finfo_file($finfo, $file['tmp_name']);
 finfo_close($finfo);
 // if ($mime !== 'image/jpeg' && $mime !== 'image/jpg' && $mime !== 'image/png') { http_response_code(400); echo json_encode(['error'=>'Only JPEG & PNG allowed']); exit; }
-if ($file['size'] > 16*1024*1024) { http_response_code(400); echo json_encode(['error'=>'File too large']); exit; }
+if ($file['size'] > 16*1024*1024) { respondWithError(400, 'File too large'); }
 
 // texture file name
 // add author name, if any, to uploaded texture file name
@@ -61,7 +76,7 @@ if ($authorName) {
   $mainName = time() . '-tex-' . safeName(basename($file['name']));
 }
 $mainPath = $uploadsDir . $mainName;
-if (!move_uploaded_file($file['tmp_name'], $mainPath)) { http_response_code(500); echo json_encode(['error'=>'Move failed']); exit; }
+if (!move_uploaded_file($file['tmp_name'], $mainPath)) { respondWithError(500, 'Move failed'); }
 
 // thumbnail
 $thumbName = null;
@@ -126,13 +141,12 @@ if (!$new['trainType'] || !in_array($new['trainType'], $validTrainTypes) || !$ne
   @unlink($uploadsDir . $mainName);
   if ($thumbName) @unlink($uploadsDir . $thumbName);
   if ($dirName) @unlink($uploadsDir . $dirName);
-  http_response_code(400);
-  echo json_encode(['error'=>'Train type and color required or invalid']);
-  exit;
+  respondWithError(400, 'Train type and color required or invalid');
 }
 
 $liveries[] = $new;
 file_put_contents($liveriesFile, json_encode($liveries, JSON_PRETTY_PRINT));
+unset($_SESSION['uploadCaptchaAnswer']);
 
 $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];
