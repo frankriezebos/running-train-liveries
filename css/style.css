@@ -446,20 +446,19 @@ ol li {
   color: white;
 }
 
+.header .logo-wrap {
+  text-align: left;
+}
+
 .logo-wrap {
   display: flex;
   gap: 15px;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.logo-wrap .h1 {
-  text-align: center;
+  align-items: flex-start;
 }
 
 .logo {
-  width: 70px;
+  width: 50px;
   height: auto;
   text-align: left;
 }
@@ -551,16 +550,12 @@ ol li {
 /* tablet, laptop, desktop */
 @media (width > 768px) {
   .logo-wrap {
-    flex-direction: row;
     gap: 25px;
+    align-items: center;
   }
 
   .logo {
-    width: 90px;
-  }
-
-  .logo-wrap .h1 {
-    text-align: left;
+    width: 70px;
   }
 
   .tabs {
