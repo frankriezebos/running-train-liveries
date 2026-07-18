@@ -1,8 +1,14 @@
 <?php $request_uri = $_SERVER['REQUEST_URI']; ?>
 
 <header class="header">
-  <p class="h1">Liveries for Running Train</p>
-  <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車!</p>
+  <div class="logo-wrap">
+    <img src="/img/LFRT.png" alt="Running Train logo made by Kev" class="logo" />
+    <div>
+      <p class="h1">Liveries for Running Train</p>
+      <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車!</p>
+    </div>
+  </div>
+
   <nav class="main-nav">
     <ul>
       <li>
