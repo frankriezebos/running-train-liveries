@@ -1,15 +1,34 @@
 <?php $request_uri = $_SERVER['REQUEST_URI']; ?>
 
 <header class="header">
-  <div class="logo-wrap">
-    <img src="/img/LFRT.png" alt="Running Train logo made by Kev" class="logo" />
-    <div>
-      <p class="h1">Liveries for Running Train</p>
-      <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車!</p>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="/img/LFRT.png" alt="Running Train logo made by Kev" class="logo" />
+      <div>
+        <p class="h1">Liveries for Running Train</p>
+        <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車!</p>
+      </div>
     </div>
+
+    <button type="button" class="mobile-nav-toggle" id="mobileNavToggle" aria-controls="siteNav" aria-expanded="false"
+      aria-label="Open menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
   </div>
 
-  <nav class="main-nav">
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+
+  <nav class="main-nav" id="siteNav" aria-label="Main navigation">
+    <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 18L18 6M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
+
     <ul>
       <li>
         <a href="/" title="Discover liveries" <?=$request_uri === '/' ? 'class="active"' : '' ?>>Discover liveries</a>
