@@ -56,3 +56,45 @@ if (document.readyState === "loading") {
 } else {
   initCookieBanner();
 }
+
+// current cookie status display on cookies page
+function updateCookieStatusDisplay() {
+  const statusElement = document.getElementById("cookie-status");
+  if (statusElement) {
+    statusElement.textContent = hasCookieConsent()
+      ? "Accepted"
+      : "Not Accepted";
+  }
+}
+
+window.addEventListener(
+  "liveryCookieConsentGranted",
+  updateCookieStatusDisplay,
+);
+document.addEventListener("DOMContentLoaded", updateCookieStatusDisplay);
+
+// cookieDisagreeBtn button on cookies page
+const disagreeButton = document.getElementById("cookieDisagreeBtn");
+if (disagreeButton) {
+  disagreeButton.addEventListener("click", () => {
+    setCookie(LIVERY_COOKIE_CONSENT_NAME, "0", 60 * 60 * 24 * 365);
+    const banner = document.getElementById("cookieBanner");
+    if (banner) {
+      banner.classList.remove("is-visible");
+    }
+    updateCookieStatusDisplay();
+  });
+}
+
+// agreeCookies button on cookies page
+const agreeCookiesButton = document.getElementById("agreeCookies");
+if (agreeCookiesButton) {
+  agreeCookiesButton.addEventListener("click", () => {
+    setCookie(LIVERY_COOKIE_CONSENT_NAME, "1", 60 * 60 * 24 * 365);
+    const banner = document.getElementById("cookieBanner");
+    if (banner) {
+      banner.classList.remove("is-visible");
+    }
+    updateCookieStatusDisplay();
+  });
+}

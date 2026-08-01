@@ -97,7 +97,7 @@
 /* above small mobile screen */
 @media (width > 475px) {
   .footer-bottom {
-    flex-direction: row;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -133,6 +133,11 @@
 
   .instructions-section .form-row {
     flex-direction: column;
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -225,10 +230,12 @@
   }
 }
 
+/* footer */
 @media (width > 1175px) {
   .footer {
     display: flex;
     justify-content: space-between;
+    text-align: left;
   }
 
   .footer-bottom {
