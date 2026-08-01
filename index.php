@@ -13,6 +13,7 @@
   <meta property="og:description"
     content="Share and discover custom train liveries for Running Train. Upload your designs, browse others, and download your favorites! By fans, for fans of Running Train game" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>

@@ -11,6 +11,7 @@
   <meta property="og:title" content="More reskins - Liveries for Running Train" />
   <meta property="og:description" content="Where to download more reskins from other livery designers?" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>

@@ -11,6 +11,7 @@
   <meta property="og:title" content="How to install - Liveries for Running Train" />
   <meta property="og:description" content="Learn how you to install livery textures for Running Train" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>

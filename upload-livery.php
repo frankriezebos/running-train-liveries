@@ -20,6 +20,7 @@ $_SESSION['uploadCaptchaAnswer'] = (string) ($captchaLeft + $captchaRight);
   <meta property="og:description"
     content="Share your custom train livery for Running Train. Upload your design here!" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>
