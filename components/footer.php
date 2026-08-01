@@ -41,4 +41,9 @@
       </svg>
       Donate with PayPal to cover the costs for hosting and domain (€24,78 p/y) Thanks!</a>
   </div>
-</footer>
+</footer><div id="cookieBanner" class="cookie-banner" role="region" aria-label="Cookie consent">
+  <p>If you would like to thumbs up, please agree to cookies.</p>
+  <button type="button" id="cookieAgreeBtn" class="btn cookie-agree-btn">Agree</button>
+</div>
+
+<script src="/js/cookie-consent.js"></script>

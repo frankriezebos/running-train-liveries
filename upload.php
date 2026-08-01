@@ -131,6 +131,8 @@ $new = [
   'trainType' => isset($_POST['trainType']) ? $_POST['trainType'] : null,
   'color' => isset($_POST['color']) ? substr(trim($_POST['color']),0,200) : null,
   'dir' => $dirName, // null if none
+  'likes' => 0,
+  'downloads' => 0,
   'uploadedAt' => gmdate('c'),
 ];
 
