@@ -16,8 +16,28 @@ async function loadLiveries() {
 
     // ✅ SORT HERE
     liveries.sort((a, b) => {
-      const diff = new Date(b.uploadedAt) - new Date(a.uploadedAt);
-      return sortOrder === "newest" ? diff : -diff;
+      const uploadedA = new Date(a.uploadedAt).getTime();
+      const uploadedB = new Date(b.uploadedAt).getTime();
+      const likesA = Number(a.likes || 0);
+      const likesB = Number(b.likes || 0);
+      const downloadsA = Number(a.downloads || 0);
+      const downloadsB = Number(b.downloads || 0);
+
+      switch (sortOrder) {
+        case "most_liked":
+          return (
+            likesB - likesA || downloadsB - downloadsA || uploadedB - uploadedA
+          );
+        case "most_downloaded":
+          return (
+            downloadsB - downloadsA || likesB - likesA || uploadedB - uploadedA
+          );
+        case "oldest":
+          return uploadedA - uploadedB;
+        case "newest":
+        default:
+          return uploadedB - uploadedA;
+      }
     });
 
     renderGallery(liveries);

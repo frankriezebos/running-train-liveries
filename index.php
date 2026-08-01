@@ -48,6 +48,8 @@
           <select id="sortOrder">
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
+            <option value="most_liked">Most Liked</option>
+            <option value="most_downloaded">Most Downloaded</option>
           </select>
         </div>
       </div>
