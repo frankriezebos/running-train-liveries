@@ -1,5 +1,14 @@
 /* mobile only */
 @media (width < 768px) {
+  .cookie-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cookie-agree-btn {
+    width: 100%;
+  }
+
   body {
     &::before {
       content: unset;
@@ -70,6 +79,86 @@
     position: relative;
   }
 
+  .section {
+    padding: 20px;
+  }
+
+  .footer {
+    margin-top: 0;
+  }
+
+  .footer-link {
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+/* above small mobile screen */
+@media (width > 475px) {
+  .footer-bottom {
+    flex-direction: row;
+  }
+}
+
+/* tablet, laptop, desktop */
+@media (width > 768px) {
+  .logo-wrap {
+    gap: 25px;
+    align-items: center;
+  }
+
+  .logo {
+    width: 70px;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab button {
+    width: 100%;
+  }
+
+  .vue-tabs {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+  }
+
+  .form-row {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .instructions-section .form-row {
+    flex-direction: column;
+  }
+}
+
+/* mobile sidebar menu */
+@media (width < 911px) {
+  button.mobile-nav-close {
+    padding: 5px;
+    width: auto;
+    margin-left: auto;
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    padding: 0;
+    gap: 6px;
+    background: transparent;
+  }
+
+  .main-nav a,
+  .main-nav a.active {
+    padding: 10px 5px;
+    width: 100%;
+  }
+
   .header-inner {
     display: flex;
     gap: 10px;
@@ -127,75 +216,6 @@
     width: 100%;
     margin-bottom: 10px;
     text-align: center;
-  }
-
-  .section {
-    padding: 20px;
-  }
-
-  .footer {
-    margin-top: 0;
-  }
-
-  .footer-link {
-    justify-content: flex-start;
-    text-align: left;
-    align-items: flex-start;
-  }
-
-  .main-nav ul {
-    flex-direction: column;
-    padding: 0;
-    gap: 6px;
-    background: transparent;
-  }
-
-  .main-nav a,
-  .main-nav a.active {
-    padding: 10px 5px;
-    width: 100%;
-  }
-}
-
-/* above small mobile screen */
-@media (width > 475px) {
-  .footer-bottom {
-    flex-direction: row;
-  }
-}
-
-/* tablet, laptop, desktop */
-@media (width > 768px) {
-  .logo-wrap {
-    gap: 25px;
-    align-items: center;
-  }
-
-  .logo {
-    width: 70px;
-  }
-
-  .tabs {
-    flex-direction: column;
-  }
-
-  .tab button {
-    width: 100%;
-  }
-
-  .vue-tabs {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 40px;
-  }
-
-  .form-row {
-    flex-direction: row;
-    gap: 15px;
-  }
-
-  .instructions-section .form-row {
-    flex-direction: column;
   }
 }
 
