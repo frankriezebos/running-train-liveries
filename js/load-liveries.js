@@ -95,6 +95,41 @@ function rememberLikedLivery(id) {
   );
 }
 
+const downloadedLiveriesThisSession = new Set();
+const pendingDownloadUpdates = new Set();
+
+function downloadedCookieName(id) {
+  return `livery_downloaded_${id}`;
+}
+
+function hasDownloadedLivery(id) {
+  if (downloadedLiveriesThisSession.has(id)) {
+    return true;
+  }
+
+  if (!window.liveryCookieUtils || !hasCookieConsent()) {
+    return false;
+  }
+
+  return (
+    window.liveryCookieUtils.getCookieValue(downloadedCookieName(id)) === "1"
+  );
+}
+
+function rememberDownloadedLivery(id) {
+  downloadedLiveriesThisSession.add(id);
+
+  if (!window.liveryCookieUtils || !hasCookieConsent()) {
+    return;
+  }
+
+  window.liveryCookieUtils.setCookie(
+    downloadedCookieName(id),
+    "1",
+    60 * 60 * 24 * 365,
+  );
+}
+
 document.getElementById("sortOrder").addEventListener("change", loadLiveries);
 window.addEventListener("liveryCookieConsentGranted", loadLiveries);
 
@@ -190,6 +225,13 @@ function renderGallery(liveries) {
         return;
       }
 
+      if (hasDownloadedLivery(id) || pendingDownloadUpdates.has(id)) {
+        return;
+      }
+
+      pendingDownloadUpdates.add(id);
+      downloadedLiveriesThisSession.add(id);
+
       try {
         const data = await incrementCounter(id, "download");
         const downloadEl = container.querySelector(
@@ -198,8 +240,13 @@ function renderGallery(liveries) {
         if (downloadEl && data?.livery) {
           downloadEl.textContent = String(Number(data.livery.downloads || 0));
         }
+
+        rememberDownloadedLivery(id);
       } catch (error) {
+        downloadedLiveriesThisSession.delete(id);
         console.error("Error updating download counter:", error);
+      } finally {
+        pendingDownloadUpdates.delete(id);
       }
     });
   });
