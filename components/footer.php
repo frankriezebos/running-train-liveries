@@ -1,12 +1,7 @@
 <footer class="footer">
   <p>
     Made with ❤️ for the Running Train community. Share your designs and
-    enjoy others' creativity!<br /><strong>Disclaimer:</strong> Unofficial fan website - I am not
-    affiliated with the game developers, just a fan sharing a passion for
-    the game and custom train liveries for it. Please respect copyright and avoid uploading
-    any designs that contain logos or trademarks. All rights reserved to the respectful owners of the original game
-    assets: Novatetsu Games. I'm not responsible for any misuse of the uploaded content. Happy designing and
-    playing! A very special thanks to Kev for donating and designing the logo! :-)
+    enjoy others' creativity!
   </p>
 
   <div class="footer-bottom">
@@ -16,8 +11,7 @@
           d="M18 4L10 9L2 4V2L10 7L18 2M18 0H2C0.89 0 0 0.89 0 2V14C0 14.5304 0.210714 15.0391 0.585786 15.4142C0.960859 15.7893 1.46957 16 2 16H18C18.5304 16 19.0391 15.7893 19.4142 15.4142C19.7893 15.0391 20 14.5304 20 14V2C20 1.46957 19.7893 0.960859 19.4142 0.585786C19.0391 0.210714 18.5304 0 18 0Z"
           fill="white" />
       </svg>
-      Contact me for any questions or
-      issues</a>
+      Contact me</a>
 
     <a href="https://github.com/frankriezebos/running-train-liveries" title="Open source Git repo" target="_blank"
       class="footer-link"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -29,8 +23,15 @@
       Open source Git
       repo</a>
 
-    <a href="https://www.paypal.com/donate/?hosted_button_id=5C7YVGXN3P7FC" title="Donate with PayPal" target="_blank"
-      class="footer-link">
+    <a href="/disclaimer.php" title="Disclaimer" class="footer-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8C0 12.42 3.58 16 8 16C12.42 16 16 12.42 16 8C16 3.58 12.42 0 8 0ZM9.5 12H6.5V10H9.5V12ZM9.5 8H6.5V4H9.5V8Z"
+          fill="white" />
+      </svg>
+      Disclaimer</a>
+
+    <a href="/donate.php" title="Donate with PayPal" class="footer-link">
       <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M5.55662 9.99C5.65662 9.99 7.97662 10.09 9.35662 9.75H9.36662C10.9566 9.36 13.1666 8.24 13.7366 4.58C13.7366 4.58 15.0066 0 8.70662 0H3.29662C2.80662 0 2.38662 0.36 2.30662 0.84L0.00662099 15.4C-0.043379 15.7 0.196621 15.98 0.496621 15.98H3.92662L4.76662 10.66C4.82662 10.28 5.15662 9.99 5.55662 9.99Z"
@@ -39,11 +40,14 @@
           d="M14.6166 5.28999C13.8066 9.01999 11.2566 10.99 7.19664 10.99H5.72664L4.69664 17.51C4.65664 17.77 4.85664 18 5.11664 18H7.01664C7.35664 18 7.65664 17.75 7.70664 17.41C7.78664 17.01 8.22664 14.09 8.31664 13.59C8.36664 13.25 8.66664 13 9.00664 13H9.44664C12.2666 13 14.4766 11.85 15.1266 8.53999C15.3866 7.19999 15.2466 6.09999 14.6166 5.28999Z"
           fill="white" />
       </svg>
-      Donate with PayPal to cover the costs for hosting and domain (€24,78 p/y) Thanks!</a>
+      Donate</a>
   </div>
-</footer><div id="cookieBanner" class="cookie-banner" role="region" aria-label="Cookie consent">
+</footer>
+
+<div id="cookieBanner" class="cookie-banner" role="region" aria-label="Cookie consent">
   <p>If you would like to thumbs up, please agree to cookies.</p>
   <button type="button" id="cookieAgreeBtn" class="btn cookie-agree-btn">Agree</button>
 </div>
 
 <script src="/js/cookie-consent.js"></script>
+<script src="/js/mobile-menu.js"></script>
