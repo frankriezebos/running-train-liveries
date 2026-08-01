@@ -3,7 +3,10 @@
 <header class="header">
   <div class="header-inner">
     <div class="logo-wrap">
-      <img src="/img/LFRT.png" alt="Running Train logo made by Kev" class="logo" />
+      <a href="/">
+        <img src="/img/LFRT.png" alt="Running Train logo made by Kev" class="logo" />
+      </a>
+
       <div>
         <p class="h1">Liveries for Running Train</p>
         <p>Download and share custom train liveries for RUNNING TRAIN | 走ル列車!</p>
