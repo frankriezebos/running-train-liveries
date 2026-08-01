@@ -53,7 +53,7 @@
 </footer>
 
 <div id="cookieBanner" class="cookie-banner" role="region" aria-label="Cookie consent">
-  <p>If you would like to thumbs up, please agree to cookies.</p>
+  <p>If you would like to thumbs up liveries, please agree to cookies.</p>
   <button type="button" id="cookieAgreeBtn" class="btn cookie-agree-btn">Agree</button>
 </div>
 
