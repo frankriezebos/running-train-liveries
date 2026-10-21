@@ -29,6 +29,9 @@ $_SESSION['uploadCaptchaAnswer'] = (string) ($captchaLeft + $captchaRight);
 
     <div class="section upload-section">
       <h1 class="h2">Upload turned off temporarily</h1>
+
+      <p class="date">21 October 2026 15:46</p>
+
       <p>Due to a PHP2Shell vurnerability regarding multipart POST-requests, the upload form is temporarily turned off
         until PHP has
         been patched.
