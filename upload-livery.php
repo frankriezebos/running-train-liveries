@@ -28,15 +28,74 @@ $_SESSION['uploadCaptchaAnswer'] = (string) ($captchaLeft + $captchaRight);
     <?php include('components/header.php'); ?>
 
     <div class="section upload-section">
-      <h1 class="h2">Upload turned off temporarily</h1>
-      <p>Due to a PHP2Shell vurnerability regarding multipart POST-requests, the upload form is temporarily turned off
-        until PHP has
-        been patched.
-        <br />
-        This is out of precaution to prevent the website getting hacked and user uploads getting removed.
-        <br />
-        Our apologies and thank you for your understanding!
-      </p>
+      <h1 class="h2">Upload Your Livery</h1>
+
+      <div class="notice">
+        <p>
+          <strong>Important:</strong> Please make sure your texture does not
+          contain any copyrighted material like logos or trademarks. We don't
+          want any trouble! :-)
+        </p>
+
+        <p>Max file size: 16 mb</p>
+      </div>
+
+      <form id="uploadForm" method="POST" action="upload.php" enctype="multipart/form-data">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="trainType">Train Type *</label>
+            <select id="trainType" name="trainType" required>
+              <option value="">Select a train type</option>
+              <option value="1100 / 1500">1100 / 1500</option>
+              <option value="KR5000 / KC1000">KR5000 / KC1000</option>
+              <option value="DC85">DC85</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="color">Color/Description *</label>
+            <input type="text" id="color" name="color" placeholder="e.g., Red and White, Blue Classic" required />
+          </div>
+
+          <div class="form-group">
+            <label for="name">Your Name (optional)</label>
+            <input type="text" id="name" name="name" placeholder="e.g., John Doe (optional)" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="file">Upload your .jpg texture file *</label>
+            <input type="file" id="file" name="file" accept=".jpg,.jpeg" required />
+          </div>
+
+          <div class="form-group">
+            <label for="thumb_file">Upload your .jpg thumbnail file (optional)</label>
+            <input type="file" id="thumb_file" name="thumbnail" accept=".jpg,.jpeg" />
+          </div>
+
+          <div class="form-group">
+            <label for="dir_file">Upload your .png dir file (optional)</label>
+            <input type="file" id="dir_file" name="dir" accept=".png" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="captchaAnswer">Anti-robot check: what is <?=$captchaLeft?> + <?=$captchaRight?>? *</label>
+            <input type="text" id="captchaAnswer" name="captchaAnswer" inputmode="numeric" autocomplete="off"
+              placeholder="Enter the number" required />
+          </div>
+        </div>
+
+        <div class="bot-trap" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <button type="submit">Upload Livery</button>
+        <div id="uploadMessage" class="message"></div>
+      </form>
     </div>
 
     <?php include('components/footer.php'); ?>
