@@ -512,7 +512,7 @@ button:active {
 }
 
 ol {
-  padding-left: 15px;
+  padding-left: 18px;
   line-height: 1.5;
 }
 
@@ -574,4 +574,8 @@ ol li {
   margin: 0 auto;
   max-width: 600px;
   text-align: left;
+}
+
+h2.update-title {
+  margin-bottom: 0;
 }

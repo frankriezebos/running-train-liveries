@@ -49,6 +49,9 @@
           <?=$request_uri === '/more-reskins.php' ? 'class="active"' : '' ?>>More reskins</a>
       </li>
       <li>
+        <a href="/updates.php" title="Updates" <?=$request_uri === '/updates.php' ? 'class="active"' : '' ?>>Updates</a>
+      </li>
+      <li>
         <a href="/credits.php" title="Credits" <?=$request_uri === '/credits.php' ? 'class="active"' : '' ?>>Credits</a>
       </li>
     </ul>
