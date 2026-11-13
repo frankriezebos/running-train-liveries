@@ -1,10 +1,11 @@
 node_modules/
 dist/
 /node_modules
-node_modules\
+.env.*
 /build
 .package-lock.json
 package-lock.json
 /node_modules/.package-lock.json
 /node_modules/package-lock.json
 liveries.json
+.env
