@@ -57,5 +57,5 @@
   <button type="button" id="cookieAgreeBtn" class="btn cookie-agree-btn">Agree</button>
 </div>
 
-<script src="/js/cookie-consent.js"></script>
+<script src="/js/site-preferences.js"></script>
 <script src="/js/mobile-menu.js"></script>

@@ -33,11 +33,11 @@
       <p>This website uses cookies to enable you to like a livery and save that cookie into your browser to prevent
         multiple likes from the same user.</p>
 
-      <p><br />Current cookie status: <span id="cookie-status"></span></p>
+      <p><br />Current cookie status: <span id="cookie-status">Unavailable. Please check your browser's privacy settings and enable JavaScript.</span></p>
 
       <div class="cookie-buttons">
-        <button class="button" id="agreeCookies">Accept Cookies</button>
-        <button class="button" id="cookieDisagreeBtn">Decline Cookies</button>
+        <button class="button" id="agreeCookies" disabled>Accept Cookies</button>
+        <button class="button" id="cookieDisagreeBtn" disabled>Decline Cookies</button>
       </div>
     </div>
 
@@ -45,7 +45,6 @@
   </div>
 
   <script src="js/server.js"></script>
-  <script src="js/cookie-consent.js"></script>
 </body>
 
 </html>
