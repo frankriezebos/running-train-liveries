@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/components/livery-paths.php';
+
 header('Content-Type: application/json');
 
 // Basic CORS for local testing (remove/adjust for production)
@@ -16,11 +18,6 @@ function respondWithError($statusCode, $message) {
   http_response_code($statusCode);
   echo json_encode(['error' => $message]);
   exit;
-}
-
-// safe filename
-function safeName($name) {
-  return preg_replace('/[^A-Za-z0-9._-]/', '-', $name);
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -128,6 +125,7 @@ $new = [
   'filename' => $mainName,
   'thumbnail' => $thumbName, // null if none
   'name' => isset($_POST['name']) ? substr(trim($_POST['name']),0,100) : null,
+  'uploadDirectory' => $authorName ? $authorName : '',
   'trainType' => isset($_POST['trainType']) ? $_POST['trainType'] : null,
   'color' => isset($_POST['color']) ? substr(trim($_POST['color']),0,200) : null,
   'dir' => $dirName, // null if none
@@ -152,9 +150,11 @@ unset($_SESSION['uploadCaptchaAnswer']);
 
 $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];
-$publicMain = $scheme . '://' . $host . '/uploads/' . $mainName;
-$publicThumb = $thumbName ? ($scheme . '://' . $host . '/uploads/' . $thumbName) : null;
-$publicDir = $dirName ? ($scheme . '://' . $host . '/uploads/' . $dirName) : null;
+$baseUrl = $scheme . '://' . $host;
+$directory = $new['uploadDirectory'];
+$publicMain = liveryFileUrl($baseUrl, $directory, $mainName);
+$publicThumb = $thumbName ? liveryFileUrl($baseUrl, $directory, $thumbName) : null;
+$publicDir = $dirName ? liveryFileUrl($baseUrl, $directory, $dirName) : null;
 
 echo json_encode(
   [

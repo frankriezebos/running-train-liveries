@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../components/livery-paths.php';
+
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
@@ -144,13 +146,14 @@ if (isset($_GET['name']) && $_GET['name'] !== '') {
     $liveries = array_values($liveries);
 }
 
-// optional: map filenames to full URLs
 $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];
+$baseUrl = $scheme . '://' . $host;
 foreach ($liveries as &$l) {
     normalizeLiveryCounters($l);
-  $l['fileUrl'] = $scheme . '://' . $host . '/uploads/' . $l['filename'];
-  $l['thumbUrl'] = $l['thumbnail'] ? ($scheme . '://' . $host . '/uploads/' . $l['thumbnail']) : null;
-  $l['dirUrl'] = $l['dir'] ? ($scheme . '://' . $host . '/uploads/' . $l['dir']) : null;
+    $directory = liveryDirectory($l, __DIR__ . '/../uploads');
+    $l['fileUrl'] = liveryFileUrl($baseUrl, $directory, $l['filename']);
+    $l['thumbUrl'] = !empty($l['thumbnail']) ? liveryFileUrl($baseUrl, $directory, $l['thumbnail']) : null;
+    $l['dirUrl'] = !empty($l['dir']) ? liveryFileUrl($baseUrl, $directory, $l['dir']) : null;
 }
 echo json_encode($liveries);

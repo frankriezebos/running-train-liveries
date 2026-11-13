@@ -158,7 +158,7 @@ function renderGallery(liveries) {
 
         return `
           <div class="livery-card">
-            <img src="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.thumbnail ? livery.thumbnail : livery.filename}" alt="${livery.color}" class="livery-image">
+            <img src="${livery.thumbUrl || livery.fileUrl}" alt="${livery.color}" class="livery-image">
             <div class="livery-info">
               <h4>${livery.color}</h4>
               <div class="livery-stats">
@@ -172,9 +172,9 @@ function renderGallery(liveries) {
               </div>
               <p class="download-label"><strong>Download:</strong></p>
               <div class="download-btns">
-                <a class="btn download-btn js-download-link" data-download-id="${livery.id}" title="Download livery" href="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.filename}" download>Texture</a>
-                ${livery.thumbnail ? `<a class="btn download-btn js-download-link" data-download-id="${livery.id}" title="Download thumb" href="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.thumbnail}" download>Thumb</a>` : ""}
-                ${livery.dir ? `<a class="btn download-btn js-download-link" data-download-id="${livery.id}" title="Download dir" href="${API_URL}/uploads/${livery.name ? `${livery.name}/` : ""}${livery.dir}" download>Dir</a>` : ""}
+                <a class="btn download-btn js-download-link" data-download-id="${livery.id}" title="Download livery" href="${livery.fileUrl}" download>Texture</a>
+                ${livery.thumbUrl ? `<a class="btn download-btn js-download-link" data-download-id="${livery.id}" title="Download thumb" href="${livery.thumbUrl}" download>Thumb</a>` : ""}
+                ${livery.dirUrl ? `<a class="btn download-btn js-download-link" data-download-id="${livery.id}" title="Download dir" href="${livery.dirUrl}" download>Dir</a>` : ""}
               </div>
             </div>
           </div>
