@@ -165,6 +165,7 @@ function renderGallery(liveries) {
                 <span class="likes-group">Likes: <strong data-like-count="${livery.id}">${Number(livery.likes || 0)}</strong> <button class="like-icon-btn ${liked ? "is-liked" : ""}" type="button" data-like-id="${livery.id}" title="${likeButtonTitle}" aria-label="${likeButtonTitle}" ${likeDisabled ? "disabled" : ""}><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 22H5a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h4v12zm2-12V6.5A2.5 2.5 0 0 1 13.5 4a2.5 2.5 0 0 1 2.45 3l-.67 3H21a2 2 0 0 1 2 2.18l-1 8A2 2 0 0 1 20 22h-9z"/></svg></button></span>
                 <span>Downloads: <strong data-download-count="${livery.id}">${Number(livery.downloads || 0)}</strong></span>
               </div>
+              ${consentGiven ? "" : '<p class="like-settings">To like a livery, <a href="/cookies.php">review cookie settings</a>.</p>'}
               <div class="livery-details">
                 ${livery.name ? `<p><strong>Creator:</strong> ${livery.name}</p>` : ""}
                 <p><strong>Train type:</strong> ${livery.trainType}</p>

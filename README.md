@@ -28,6 +28,11 @@ Site is now live on a paid hosting and domain: [running-train-fans.nl](https://r
 - Click **Clear Filters** to reset all filters
 - **Sort** by Newest or Oldest
 
+### Liking Liveries
+
+Liking requires cookies. Use the cookie settings link on a livery or the Cookies
+link in the footer to review your choice. Some browsers hide cookie banners.
+
 ## File Structure
 
 ```

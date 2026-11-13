@@ -361,6 +361,12 @@ button:active {
   gap: 6px;
 }
 
+.like-settings {
+  font-size: 0.9em;
+  color: #394072;
+  margin-bottom: 10px;
+}
+
 .like-icon-btn {
   width: 28px;
   height: 28px;
