@@ -1,3 +1,15 @@
+<?php
+require_once __DIR__ . '/components/news.php';
+
+try {
+  $news = fetchNews(apisfulApiKey());
+  $newsError = false;
+} catch (RuntimeException $exception) {
+  error_log('News: ' . $exception->getMessage());
+  $news = [];
+  $newsError = true;
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -26,13 +38,21 @@
 
       <p><br /></p>
 
-      <ol class="updates-list">
-        <li>
-          <h2 class="h3 update-title">Broken thumbnail and downloads fixed</h2> 
-          <p class="date"><em>13 november 2026</em></p>
-          <p>The broken thumbnail and downloads issue has now been fixed. The problem was that the URLs for the thumbnails and download links were incorrect, linking to /uploads/John%20Doe/...jpg instead of the correct url /uploads/John-Doe/...jpg causing them to not display properly. This has now been corrected. My apologies for the inconvenience caused.</p>
-        </li>
-      </ol>
+      <?php if ($newsError): ?>
+        <p>News is temporarily unavailable. Please try again later.</p>
+      <?php elseif (!$news): ?>
+        <p>There are no updates yet.</p>
+      <?php else: ?>
+        <ol class="updates-list">
+          <?php foreach ($news as $item): ?>
+            <li>
+              <h2 class="h3 update-title"><?= htmlspecialchars($item['title'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></h2>
+              <p class="date"><em><?= htmlspecialchars($item['date'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') ?></em></p>
+              <?= $item['description'] ?>
+            </li>
+          <?php endforeach; ?>
+        </ol>
+      <?php endif; ?>
     </div>
 
     <?php include('components/footer.php'); ?>

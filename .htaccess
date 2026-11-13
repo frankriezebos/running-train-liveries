@@ -1,5 +1,9 @@
 RewriteEngine On
 
+<FilesMatch "(?i)^\.env($|\.)">
+  Require all denied
+</FilesMatch>
+
 # 1) Redirect externally to HTTPS (preserve host and URI)
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
